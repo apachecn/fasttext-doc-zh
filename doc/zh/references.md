@@ -3,7 +3,7 @@ id: references
 title: References
 ---
 
-Please cite [1](#enriching-word-vectors-with-subword-information) if using this code for learning word representations or [2](#bag-of-tricks-for-efficient-text-classification) if using for text classification.
+如果使用此代码学习词语表示, 请引用 [1](#enriching-word-vectors-with-subword-information); 如果使用文本分类, 请引用 [2](#bag-of-tricks-for-efficient-text-classification).
 
 [1] P. Bojanowski\*, E. Grave\*, A. Joulin, T. Mikolov, [*Enriching Word Vectors with Subword Information*](https://arxiv.org/abs/1607.04606)
 
@@ -16,7 +16,7 @@ Please cite [1](#enriching-word-vectors-with-subword-information) if using this 
 }
 ```
 
-[2] A. Joulin, E. Grave, P. Bojanowski, T. Mikolov, [*Bag of Tricks for Efficient Text Classification*](https://arxiv.org/abs/1607.01759)
+[2] A. Joulin, E. Grave, P. Bojanowski, T. Mikolov, [*一袋高效文本分类技巧*](https://arxiv.org/abs/1607.01759)
 
 ```markup
 @article{joulin2016bag,
@@ -27,7 +27,7 @@ Please cite [1](#enriching-word-vectors-with-subword-information) if using this 
 }
 ```
 
-[3] A. Joulin, E. Grave, P. Bojanowski, M. Douze, H. Jégou, T. Mikolov, [*FastText.zip: Compressing text classification models*](https://arxiv.org/abs/1612.03651)
+[3] A. Joulin, E. Grave, P. Bojanowski, M. Douze, H. Jégou, T. Mikolov, [*FastText.zip: 压缩文本分类模型*](https://arxiv.org/abs/1612.03651)
 
 ```markup
 @article{joulin2016fasttext,

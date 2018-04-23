@@ -16,7 +16,7 @@ title: References
 }
 ```
 
-[2] A. Joulin, E. Grave, P. Bojanowski, T. Mikolov, [*一袋高效文本分类技巧*](https://arxiv.org/abs/1607.01759)
+[2] A. Joulin, E. Grave, P. Bojanowski, T. Mikolov, [*Bag of Tricks for Efficient Text Classification*](https://arxiv.org/abs/1607.01759)
 
 ```markup
 @article{joulin2016bag,

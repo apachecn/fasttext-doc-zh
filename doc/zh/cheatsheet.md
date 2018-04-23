@@ -3,63 +3,63 @@ id: cheatsheet
 title: Cheatsheet
 ---
 
-## Word representation learning
+## Word representation learning(词表示学习)
 
-In order to learn word vectors do:
+为了学习单词向量:
 
 ```bash
 $ ./fasttext skipgram -input data.txt -output model
 ```
 
-## Obtaining word vectors
+## Obtaining word vectors(获取单词向量)
 
-Print word vectors for a text file `queries.txt` containing words.
+为 `queries.txt` 包含单词的文本文件打印单词向量.
 
 ```bash
 $ ./fasttext print-word-vectors model.bin < queries.txt
 ```
 
-## Text classification
+## Text classification(文本分类)
 
-In order to train a text classifier do:
+为了训练一个文本分类器, 请执行以下操作:
 
 ```bash
 $ ./fasttext supervised -input train.txt -output model
 ```
 
-Once the model was trained, you can evaluate it by computing the precision and recall at k (P@k and R@k) on a test set using:
+一旦模型被训练完毕, 您可以使用以下公式计算测试集上的k (P@k and R@k) 的精准和召回来评估它:
 
 ```bash
 $ ./fasttext test model.bin test.txt 1
 ```
 
-In order to obtain the k most likely labels for a piece of text, use:
+为了获得一段文字的k个最可能的标签，使用:
 
 ```bash
 $ ./fasttext predict model.bin test.txt k
 ```
 
-In order to obtain the k most likely labels and their associated probabilities for a piece of text, use:
+为了获得一段文字的k个最可能的标签及其相关概率,请使用:
 
 ```bash
 $ ./fasttext predict-prob model.bin test.txt k
 ```
 
-If you want to compute vector representations of sentences or paragraphs, please use:
+如果你想计算句子或段落的向量表示, 请使用:
 
 ```bash
 $ ./fasttext print-sentence-vectors model.bin < text.txt
 ```
 
-## Quantization
+## Quantization(量化)
 
-In order to create a `.ftz` file with a smaller memory footprint do:
+为了创建一个 `.ftz` 内存占用量较小的文件, 请执行以下操作:
 
 ```bash
 $ ./fasttext quantize -output model
 ```
 
-All other commands such as test also work with this model
+所有其他命令（如测试）也适用于此模型
 
 ```bash
 $ ./fasttext test model.ftz test.txt

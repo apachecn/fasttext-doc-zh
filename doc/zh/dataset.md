@@ -3,4 +3,4 @@ id: dataset
 title: Datasets
 ---
 
-[Download YFCC100M Dataset](https://fb-public.box.com/s/htfdbrvycvroebv9ecaezaztocbcnsdn)
+[下载 YFCC100M 数据集](https://fb-public.box.com/s/htfdbrvycvroebv9ecaezaztocbcnsdn)

@@ -17,9 +17,7 @@ title: Supervised models
 
 每个条目描述了模型的测试精度和大小。 您可以单击表格单元格来下载相应的模型.
 
-| 数据集| ag新闻| 亚马逊评论全部| 亚马逊评论极性| dbpedia |
-
-| 数据集 | ag 新闻 | 亚马逊评论全部 | 亚马逊评论极性 | dbpedia                |
+| 数据集 | ag 新闻 | 亚马逊评论全部 | 亚马逊评论极性 | dbpedia |
 |-----------|-----------------------|-----------------------|------------------------|------------------------|
 | regular   | [0.924 / 387MB](https://s3-us-west-1.amazonaws.com/fasttext-vectors/supervised_models/ag_news.bin) | [0.603 / 462MB](https://s3-us-west-1.amazonaws.com/fasttext-vectors/supervised_models/amazon_review_full.bin) | [0.946 / 471MB](https://s3-us-west-1.amazonaws.com/fasttext-vectors/supervised_models/amazon_review_polarity.bin) | [0.986 / 427MB](https://s3-us-west-1.amazonaws.com/fasttext-vectors/supervised_models/dbpedia.bin) |
 | compressed | [0.92 / 1.6MB](https://s3-us-west-1.amazonaws.com/fasttext-vectors/supervised_models/ag_news.ftz)    | [0.599 / 1.6MB]( https://s3-us-west-1.amazonaws.com/fasttext-vectors/supervised_models/amazon_review_full.ftz)   | [0.93 / 1.6MB]( https://s3-us-west-1.amazonaws.com/fasttext-vectors/supervised_models/amazon_review_polarity.ftz)  | [0.984 / 1.7MB]( https://s3-us-west-1.amazonaws.com/fasttext-vectors/supervised_models/dbpedia.ftz) |

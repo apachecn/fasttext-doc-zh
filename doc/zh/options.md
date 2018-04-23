@@ -21,10 +21,10 @@ $ ./fasttext supervised
   -minCountLabel      标签发生次数最少 [0]
   -wordNgrams         单词 ngram 的最大长度 [1]
   -bucket             桶的桶数 [2000000]
-  -minn               min length of char ngram [3]
-  -maxn               max length of char ngram [6]
-  -t                  sampling threshold [0.0001]
-  -label              labels prefix [__label__]
+  -minn               char ngram 的最小长度 [3]
+  -maxn               char ngram 的最大长度 [6]
+  -t                  抽样阈值 [0.0001]
+  -label              标签前缀 [__label__]
 
   以下用于训练的参数是可选的:
   -lr                 学习率 [0.05]

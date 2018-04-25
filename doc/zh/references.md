@@ -3,7 +3,7 @@ id: references
 title: References
 ---
 
-如果使用此代码学习词语表示, 请引用 [1](#enriching-word-vectors-with-subword-information); 如果使用文本分类, 请引用 [2](#bag-of-tricks-for-efficient-text-classification).
+如果使用此代码学习词语表示, 请引用 [1](#enriching-word-vectors-with-subword-information); 如果使用文本分类, 请引用 [2](#bag-of-tricks-for-efficient-text-classification)。
 
 [1] P. Bojanowski\*, E. Grave\*, A. Joulin, T. Mikolov, [*Enriching Word Vectors with Subword Information*](https://arxiv.org/abs/1607.04606)
 

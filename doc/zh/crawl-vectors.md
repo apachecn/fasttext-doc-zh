@@ -3,7 +3,7 @@ id: crawl-vectors
 title: Word vectors for 157 languages
 ---
 
-我们发布了之前训练的157种语言的词向量，这些词向量是用fasttext在[*Common Crawl*](http://commoncrawl.org/)和[*Wikipedia*](https://www.wikipedia.org)上训练得出的
+我们发布了之前训练的157种语言的词向量，这些词向量是用 fasttext 在 [*Common Crawl*](http://commoncrawl.org/) 和 [*Wikipedia*](https://www.wikipedia.org) 上训练得出的
 
 这些词向量是由CBOW训练而成，而且所使用的CBOW模型考虑了位置权重，包含了300个维度，并且也考虑了长度为5，包含十个负样本的大小为5的窗体的字符N元模型。
 
@@ -42,17 +42,17 @@ def load_vectors(fname):
 ### 分词
 
 
-我们使用[*Stanford word segmenter*](https://nlp.stanford.edu/software/segmenter.html)对汉语分词，使用[*Mecab*](http://taku910.github.io/mecab/)对日语分词，使用[*UETsegmenter*](https://github.com/phongnt570/UETsegmenter) 对越南语分词
+我们使用 [*Stanford word segmenter*](https://nlp.stanford.edu/software/segmenter.html) 对汉语分词，使用 [*Mecab*](http://taku910.github.io/mecab/) 对日语分词，使用 [*UETsegmenter*](https://github.com/phongnt570/UETsegmenter) 对越南语分词
 
-对于使用拉丁文，西里尔文，希伯来文或希腊文的语言，我们用来自于[*Europarl*](http://www.statmt.org/europarl/)的预处理工具进行分词
+对于使用拉丁文，西里尔文，希伯来文或希腊文的语言，我们用来自于 [*Europarl*](http://www.statmt.org/europarl/) 的预处理工具进行分词
 
 剩下的语言，我们用ICU进行分词
 
-想要了解更多关于这些模型训练的信息，可以查看这篇文章[*Learning Word Vectors for 157 Languages*](https://arxiv.org/abs/1802.06893).
+想要了解更多关于这些模型训练的信息，可以查看这篇文章 [*Learning Word Vectors for 157 Languages*](https://arxiv.org/abs/1802.06893).
 
 ### 许可证明
 
-这些词向量发布在[*Creative Commons Attribution-Share-Alike License 3.0*](https://creativecommons.org/licenses/by-sa/3.0/)上面
+这些词向量发布在 [*Creative Commons Attribution-Share-Alike License 3.0*](https://creativecommons.org/licenses/by-sa/3.0/) 上面
 
 ### 参考资料
 

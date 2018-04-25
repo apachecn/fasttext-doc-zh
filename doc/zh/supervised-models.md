@@ -3,11 +3,11 @@ id: supervised-models
 title: Supervised models
 ---
 
-该页面收集几个数据集上的几个预先训练的监督模型.
+这个页面收集了几个预先训练好的监督模型，其训练数据来自于几个不同的数据集。
 
 ### Description(描述)
 
-常规模型使用 [1] 中描述的程序进行训练. 可以使用我们的 github 存储库中的 classification-results.sh 脚本来复制它们. 量化模型通过使用相应的监督设置并将以下标志添加到量化子命令来构建.
+常规模型使用 [1] 中描述的步骤进行训练. 可以使用我们 github 存储库中的 classification-results.sh 脚本来复现它们。通过使用相应的监督设置并将以下参数添加到量化子命令中来构建量化模型.
 
 ```bash
 -qnorm -retrain -cutoff 100000

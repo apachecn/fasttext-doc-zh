@@ -3,33 +3,33 @@ id: supervised-tutorial
 title: Text classification
 ---
 
-Text classification is a core problem to many applications, like spam detection, sentiment analysis or smart replies. In this tutorial, we describe how to build a text classifier with the fastText tool. 
+文本分类是许多应用程序的核心问题，例如垃圾邮件检测，情感分析或智能回复。 在本教程中，我们将介绍如何使用fastText工具构建文本分类器。
 
-## What is text classification?
+## 什么是文本分类？
 
-The goal of text classification is to assign documents (such as emails,  posts, text messages, product reviews, etc...) to one or multiple categories. Such categories can be review scores, spam v.s. non-spam, or the language in which the document was typed. Nowadays, the dominant approach to build such classifiers is  machine learning, that is  learning classification rules from examples. In order to build such classifiers, we need labeled data, which consists of documents and their corresponding categories (or tags, or labels).
+文本分类的目标是将文档（如电子邮件，博文，短信，产品评论等）分配给一个或多个类别。 这些类别可以是评论分数，垃圾邮件与非垃圾邮件的划分，或者文档的编写语言。 如今，构建这种分类器的主要方法是机器学习，即从样本中学习分类规则。 为了构建这样的分类器，我们需要标注数据，它由文档及其相应的类别（也称为标签或标注）组成。
 
-As an example, we build a classifier which automatically classifies stackexchange questions about cooking into one of  several possible tags, such as `pot`, `bowl` or `baking`.
+作为一个例子，我们建立了一个分类器，该分类器将 [stackexchange](https://stackexchange.com/) 网站上有关烹饪的问题自动分类为几个可能的标签之一，例如`pot`，`bowl`或`baking`。
 
-##  Installing fastText
+##  安装 fastText
 
-The first step of this tutorial is to install and build fastText. It only requires a c++ compiler with good support of c++11.
+本教程的第一步是安装并构建 fastText。 它只需要一个能够良好支持 c++11 的 c++ 编译器。
 
-Let us start by downloading the [most recent release](https://github.com/facebookresearch/fastText/releases):
+让我们从下载[最新版本](https://github.com/facebookresearch/fastText/releases)开始：
 
 ```bash
 $ wget https://github.com/facebookresearch/fastText/archive/v0.1.0.zip
 $ unzip v0.1.0.zip
 ```
 
-Move to the fastText directory and build it:
+移动到fastText目录并构建它:
 
 ```bash
 $ cd fastText-0.1.0
 $ make
 ```
 
-Running the binary without any argument will print the high level documentation, showing the different usecases supported by fastText:
+运行二进制文件（不带任何参数）将打印高级文档，显示 fastText 支持的不同用例：
 
 ```bash
 >> ./fasttext
@@ -37,50 +37,50 @@ usage: fasttext <command> <args>
 
 The commands supported by fasttext are:
 
-  supervised              train a supervised classifier
-  quantize                quantize a model to reduce the memory usage
-  test                    evaluate a supervised classifier
-  predict                 predict most likely labels
-  predict-prob            predict most likely labels with probabilities
-  skipgram                train a skipgram model
-  cbow                    train a cbow model
-  print-word-vectors      print word vectors given a trained model
-  print-sentence-vectors  print sentence vectors given a trained model
-  nn                      query for nearest neighbors
-  analogies               query for analogies
+  supervised              训练一个监督分类器
+  quantize                量化模型以减少内存使用量
+  test                    评估一个监督分类器
+  predict                 预测最有可能的标签
+  predict-prob            用概率预测最可能的标签
+  skipgram                训练一个 skipgram 模型
+  cbow                    训练一个 cbow 模型
+  print-word-vectors      给定一个训练好的模型，打印出所有的单词向量
+  print-sentence-vectors  给定一个训练好的模型，打印出所有的句子向量
+  nn                      查询最近邻居
+  analogies               查找所有同类词
 
 ```
 
-In this tutorial, we mainly use the `supervised`, `test` and `predict` subcommands, which corresponds to learning (and using) text classifier. For an introduction to the other functionalities of fastText, please see the [tutorial about learning word vectors](https://fasttext.cc/docs/en/unsupervised-tutorial.html).
+在本教程中，我们主要使用`supervised`，`test`和`predict`子命令，它们对应于学习（和使用）文本分类器。 有关 fastText 其他功能的介绍，请参见[单词向量的教程](https://fasttext.cc/docs/en/unsupervised-tutorial.html)。
 
-## Getting and preparing the data
+## 获取和准备数据
 
-As mentioned in the introduction, we need labeled data to train our supervised classifier. In this tutorial, we are interested in building a classifier to automatically recognize the topic of a stackexchange question about cooking. Let's download examples of questions from [the cooking section of Stackexchange](http://cooking.stackexchange.com/), and their associated tags:
+正如上述介绍中所提到的，我们需要标记数据来训练我们的监督分类器。 在本教程中，我们将构建一个分类器来自动识别烹饪问题的类别。 让我们从[Stackexchange 网站的烹饪部分](http://cooking.stackexchange.com/)下载问题示例及其相关标签：
 
 ```bash
 >> wget https://s3-us-west-1.amazonaws.com/fasttext-vectors/cooking.stackexchange.tar.gz && tar xvzf cooking.stackexchange.tar.gz
 >> head cooking.stackexchange.txt
 ```
 
-Each line of the text file contains a list of labels, followed by the corresponding document. All the labels start by the `__label__` prefix, which is how fastText recognize what is a label or what is a word.  The model is then trained to predict the labels given the word in the document.
+文本文件的每一行都包含一个标签列表，其后是相应的文档。 所有标签都以 `__label__` 前缀开始，这就是 fastText 如何识别标签或单词是什么。 然后对模型进行训练，以预测给定文档的标签。
 
-Before training our first classifier, we need to split the data into train and validation. We will use the validation set to evaluate how good the learned classifier is on new data.
+在训练我们的第一个分类器之前，我们需要将数据分为训练集和验证集。 我们将使用验证集来评估该学习分类器对新数据的适用程度。
 
 ```bash
 >> wc cooking.stackexchange.txt 
    15404  169582 1401900 cooking.stackexchange.txt
 ```
 
-Our full dataset contains 15404 examples. Let's split it into a training set of 12404 examples and a validation set of 3000 examples:
+我们的完整数据集包含 15404 样本。 我们将其分为拥有 12404 个样本的训练集和拥有 3000 个样本的验证集：
 
 ```bash
 >> head -n 12404 cooking.stackexchange.txt > cooking.train
 >> tail -n 3000 cooking.stackexchange.txt > cooking.valid
 ```
 
-## Our first classifier
+## 我们的第一个分类器
 
-We are now ready to train our first classifier:
+我们现在准备好训练第一个分类器了：
 
 ```bash
 >> ./fasttext supervised -input cooking.train -output model_cooking
@@ -90,23 +90,23 @@ Number of labels: 734
 Progress: 100.0%  words/sec/thread: 75109  lr: 0.000000  loss: 5.708354  eta: 0h0m 
 ```
 
-The `-input` command line option indicates the file containing the training examples, while the `-output` option indicates where to save the model. At the end of training, a file `model_cooking.bin`, containing the trained classifier, is created in the current directory.
+命令行选项 `-input` 指示包含训练样本的文件，而选项 `-output` 指示保存模型的位置。 训练结束时，在当前目录中创建一个 `model_cooking.bin` 文件，其中包含了已经训练好的模型。
 
-It is possible to directly test our classifier interactively, by running the command:
+可以通过命令行直接交互式地测试分类器：
 
 ```bash
 >> ./fasttext predict model_cooking.bin -
 ```
 
-and then typing a sentence.  Let's first try the sentence:
+然后输入一个句子。我们来试一下：
 
 *Which baking dish is best to bake a banana bread ?*
 
-The predicted tag is `baking`  which fits well to this question. Let us now try a second example:
+其预测的标签是 `baking`，非常贴切。 现在让我们尝试第二个例子：
 
 *Why not put knives in the dishwasher?*
 
-The label predicted by the model is `food-safety`, which is not relevant. Somehow, the model seems to fail on simple examples. To get a better sense of its quality, let's test it on the validation data by running:
+模型预测出的标签是 `food-safety`，这是不相关的。 不知何故，这个模型似乎在简单的例子上反而失败了。 为了更好地了解其预测质量，我们通过运行以下验证数据对其进行测试：
 
 ```bash
 >> ./fasttext test model_cooking.bin cooking.valid                 
@@ -116,7 +116,7 @@ R@1  0.0541
 Number of examples: 3000
 ```
 
-The output of fastText are the precision at one (`P@1`) and the recall at one (`R@1`). We can also compute the precision at five and recall at five with:
+只给定一个真实标签用于预测，fastText 的输出是精确度 (`P@1`) 和 召回率 (`R@1`)。我们也可以计算给定五个真实标签用于预测的精确度和召回率：
 
 ```bash
 >> ./fasttext test model_cooking.bin cooking.valid 5               
@@ -126,31 +126,31 @@ R@5  0.146
 Number of examples: 3000
 ```
 
-## Advanced readers: precision and recall
+## 高级读者：精确度和召回率
 
-The precision is the number of correct labels among the labels predicted by fastText. The recall is the number of labels that successfully were predicted, among all the real labels. Let's take an example to make this more clear:
+精确度是由 fastText 所预测标签中正确标签的数量。 召回率是所有真实标签中被成功预测出的标签数量。 我们举一个例子来说明这一点：
 
 *Why not put knives in the dishwasher?*
 
-On Stack Exchange, this sentence is labeled with three tags: `equipment`, `cleaning` and `knives`. The top five labels predicted by the model can be obtained with:
+在 Stack Exchange 上，这句话标有三个标签：`equipment`，`cleaning`和`knives`。 模型预测出的标签前五名可以通过以下方式获得：
 
 ```bash
 >> ./fasttext predict model_cooking.bin - 5
 ```
 
-are `food-safety`, `baking`, `equipment`, `substitutions` and `bread`.
+前五名是 `food-safety`, `baking`, `equipment`, `substitutions` and `bread`.
 
-Thus, one out of five labels predicted by the model is correct, giving a precision of 0.20. Out of the three real labels, only one is predicted by the model, giving a recall of 0.33.
+因此，模型预测的五个标签中有一个是正确的，精确度为 0.20。 在三个真实标签中，只有 `equipment` 一个被该模型预测出，召回率为 0.33。
 
-For more details, see [the related Wikipedia page](https://en.wikipedia.org/wiki/Precision_and_recall).
+更多详细信息，请参阅[相关维基百科页面](https://en.wikipedia.org/wiki/Precision_and_recall)。
 
-## Making the model better
+## 使模型更好
 
-The model obtained by running fastText with the default arguments is pretty bad at classifying new questions. Let's try to improve the performance, by changing the default parameters.
+使用缺省参数运行 fastText 所获得的模型在分类新问题时非常糟糕。 让我们尝试通过更改默认参数来提高性能。
 
-### preprocessing the data
+### 预处理数据
 
-Looking at the data, we observe that some words contain uppercase letter or punctuation. One of the first step to improve the performance of our model is to apply some simple pre-processing. A crude normalization can be obtained using command line tools such as `sed` and `tr`:
+看看这些数据，我们发现有些单词包含大写字母或标点符号。 提高我们模型性能的第一步之一是应用一些简单的预处理。 粗略的标准化可以通过命令行工具获得，例如`sed`和 `tr`：
 
 ```bash
 >> cat cooking.stackexchange.txt | sed -e "s/\([.\!?,'/()]\)/ \1 /g" | tr "[:upper:]" "[:lower:]" > cooking.preprocessed.txt
@@ -158,7 +158,7 @@ Looking at the data, we observe that some words contain uppercase letter or punc
 >> tail -n 3000 cooking.preprocessed.txt > cooking.valid 
 ```
 
-Let's train a new model on the pre-processed data:
+让我们在被预处理过的数据上训练一个新的模型吧：
 
 ```bash
 >> ./fasttext supervised -input cooking.train -output model_cooking
@@ -174,11 +174,11 @@ R@1  0.0717
 Number of examples: 3000
 ```
 
-We observe that thanks to the pre-processing, the vocabulary is smaller (from 14k words to 9k). The precision is also starting to go up by 4%!
+我们观察到，由于预处理，词汇量更小（从 14k 到 9k）。精确度也开始上升4％！
 
-### more epochs and larger learning rate
+### 更多的迭代和更快的学习速率
 
-By default, fastText sees each training example only five times during training, which is pretty small, given that our training set only have 12k training examples. The number of times each examples is seen (also known as the number of epochs), can be increased using the `-epoch` option:
+默认情况下，由于我们的训练集只有 12k 个训练样本，因此 fastText 在训练过程中仅看到每个训练样例五次，这太少了。 可以使用 -epoch 选项增加每个示例出现的次数（也称为迭代数）：
 
 ```bash
 >> ./fasttext supervised -input cooking.train -output model_cooking -epoch 25 
@@ -188,7 +188,7 @@ Number of labels: 734
 Progress: 100.0%  words/sec/thread: 77633  lr: 0.000000  loss: 7.147976  eta: 0h0m
 ```
 
-Let's test the new model:
+让我们测试一下新模型：
 
 ```bash
 >> ./fasttext test model_cooking.bin cooking.valid                                        
@@ -198,7 +198,7 @@ R@1  0.218
 Number of examples: 3000
 ```
 
-This is much better! Another way to change the learning speed of our model is to increase (or decrease) the learning rate of the algorithm. This corresponds to how much the model changes after processing each example. A learning rate of 0 would means that the model does not change at all, and thus, does not learn anything. Good values of the learning rate are in the range `0.1 - 1.0`.
+这好多了！ 另一种改变我们模型学习速度的方法是增加（或减少）算法的学习速率。 这对应于处理每个样本后模型变化的幅度。 学习率为 0 意味着模型根本不会改变，因此不会学到任何东西。好的学习速率在 `0.1 - 1.0` 范围内。
 
 ```bash
 >> ./fasttext supervised -input cooking.train -output model_cooking -lr 1.0  
@@ -214,7 +214,7 @@ R@1  0.245
 Number of examples: 3000
 ```
 
-Even better! Let's try both together:
+更好了！我们试试学习速率和迭代次数两个参数一起变化：
 
 ```bash
 >> ./fasttext supervised -input cooking.train -output model_cooking -lr 1.0 -epoch 25
@@ -230,11 +230,11 @@ R@1  0.255
 Number of examples: 3000
 ```
 
-Let us now add a few more features to improve even further our performance!
+现在让我们多添加一些功能来进一步提高我们的性能！
 
 ### word n-grams
 
-Finally, we can improve the performance of a model by using word bigrams, instead of just unigrams. This is especially important for classification problems where word order is important, such as sentiment analysis.
+最后，我们可以通过使用 word bigrams 而不是 unigrams 来提高模型的性能。 这对于词序重要的分类问题尤其重要，例如情感分析。
 
 ```bash
 >> ./fasttext supervised -input cooking.train -output model_cooking -lr 1.0 -epoch 25 -wordNgrams 2
@@ -250,30 +250,30 @@ R@1  0.261
 Number of examples: 3000
 ```
 
-With a few steps, we were able to go from a precision at one of 12.4% to 59.9%. Important steps included:
+只需几个步骤，我们就可以从 12.4％ 到达 59.9％ 的精度。 重要步骤包括：
 
-* preprocessing the data ;
-* changing the number of epochs (using the option `-epoch`, standard range `[5 - 50]`) ;
-* changing the learning rate (using the option `-lr`, standard range `[0.1 - 1.0]`) ;
-* using word n-grams (using the option `-wordNgrams`, standard range `[1 - 5]`).
+* 预处理数据 ;
+* 改变迭代次数 (使用选项 `-epoch`, 标准范围 `[5 - 50]`) ;
+* 改变学习速率 (使用选项 `-lr`, 标准范围 `[0.1 - 1.0]`) ;
+* 使用 word n-grams (使用选项 `-wordNgrams`, 标准范围 `[1 - 5]`).
 
-## Advanced readers: What is a Bigram?
+## 高级读者: 什么是 Bigram?
 
-A 'unigram' refers to a single undividing unit, or token,  usually used as an input to a model. For example a unigram can a word or a letter depending on the model. In fastText, we work at the word level and thus unigrams are words.
+'unigram' 指的是单个不可分割的单位或标记，通常用作模型的输入。 例如，根据模型的不同，'unigram' 可以是单词或字母。 在 fastText 中，我们在单词级别工作，因此 unigrams 是单词。
 
-Similarly we denote by 'bigram' the concatenation of  2 consecutive tokens or words. Similarly we often talk about n-gram to refer to the concatenation any n consecutive tokens. 
+类似地，我们用 'bigram' 表示2个连续标记或单词的连接。 类似地，我们经常谈论 n-gram 来引用任意 n 个连续标记或单词的级联。
 
-For example, in the sentence, 'Last donut of the night', the unigrams are  'last', 'donut', 'of', 'the' and 'night'. The bigrams are: 'Last donut', 'donut of', 'of the' and 'the night'.
+例如，在 'Last donut of the night' 这个句子中，unigrams是 'last'，'donut'，'of'，'the' 和 'night'。 bigrams 是 'Last donut', 'donut of', 'of the' 和 'the night'。
 
-Bigrams are particularly interesting because, for most sentences, you can reconstruct the order of the words just by looking at a bag of n-grams. 
+Bigrams 特别有趣，因为对于大多数句子，只需查看 n-gram 的集合即可重建句子中单词的顺序。
 
-Let us illustrate this by a simple exercise, given the following bigrams, try to reconstruct the original sentence: 'all out',  'I am', 'of bubblegum', 'out of' and 'am all'.
-It is common to refer to a word as a unigram. 
+让我们通过一个简单的练习来说明这一点，给定以下 bigrams，试着重构原始的句子：'all out'，'I am'，'bubblegum'，'out of' 和 'all all'。
+通常将一个单词称为一个 unigram。
 
 ## Scaling things up
 
 Since we are training our model on a few thousands of examples, the training only takes a few seconds. But training models on larger datasets, with more labels can start to be too slow. A potential solution to make the training faster is to use the hierarchical softmax, instead of the regular softmax [Add a quick explanation of the hierarchical softmax]. This can be done with the option `-loss hs`:
-
+由于我们正在通过几千个示例来训练我们的模型，所以训练只需几秒钟。但是在更大的数据集上训练模型，使用更多的标签可能会太慢。 使训练更快的潜在解决方案是使用分层softmax，而不是常规softmax [添加分层softmax的快速解释]。 这可以通过选项'-loss hs`完成：
 ```bash
 >> ./fasttext supervised -input cooking.train -output model_cooking -lr 1.0 -epoch 25 -wordNgrams 2 -bucket 200000 -dim 50 -loss hs
 Read 0M words

@@ -132,7 +132,7 @@ Number of examples: 3000
 
 *Why not put knives in the dishwasher?*
 
-在 Stack Exchange 上，这句话标有三个标签：`equipment`，`cleaning`和`knives`。 模型预测出的标签前五名可以通过以下方式获得：
+在 Stack Exchange 上，这句话标有三个标签：`equipment`，`cleaning` 和 `knives`。 模型预测出的标签前五名可以通过以下方式获得：
 
 ```bash
 >> ./fasttext predict model_cooking.bin - 5

@@ -51,7 +51,7 @@ The commands supported by fasttext are:
 
 ```
 
-在本教程中，我们主要使用`supervised`，`test`和`predict`子命令，它们对应于学习（和使用）文本分类器。 有关 fastText 其他功能的介绍，请参见[单词向量的教程](https://fasttext.cc/docs/en/unsupervised-tutorial.html)。
+在本教程中，我们主要使用`supervised`，`test` 和 `predict` 子命令，它们对应于学习（和使用）文本分类器。 有关 fastText 其他功能的介绍，请参见[单词向量的教程](https://fasttext.cc/docs/en/unsupervised-tutorial.html)。
 
 ## 获取和准备数据
 

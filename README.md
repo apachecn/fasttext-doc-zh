@@ -28,7 +28,7 @@ FastText 是一个用于高效学习单词表示和句子分类的库。
 | [cheatsheet](https://github.com/apachecn/fasttext-doc-zh/blob/v0.1.0/doc/zh/cheatsheet.md) | [@片刻](https://github.com/jiangzhonglian) |      |
 | [crawl-vectors](https://github.com/apachecn/fasttext-doc-zh/blob/v0.1.0/doc/zh/crawl-vectors.md) | [@GMbappe](https://github.com/GMbappe)     |   [@Lisanaaa](https://github.com/Lisanaaa)   |
 | [dataset](https://github.com/apachecn/fasttext-doc-zh/blob/v0.1.0/doc/zh/dataset.md) | [@片刻](https://github.com/jiangzhonglian) |      |
-| [english-vectors](https://github.com/apachecn/fasttext-doc-zh/blob/v0.1.0/doc/zh/english-vectors.md) | [@GMbappe](https://github.com/GMbappe)     |      |
+| [english-vectors](https://github.com/apachecn/fasttext-doc-zh/blob/v0.1.0/doc/zh/english-vectors.md) | [@GMbappe](https://github.com/GMbappe)     |   [@Lisanaaa](https://github.com/Lisanaaa)   |
 | [faqs](https://github.com/apachecn/fasttext-doc-zh/blob/v0.1.0/doc/zh/faqs.md) | [@Twinkle](https://github.com/kemingzeng)  |      |
 | [language-identification](https://github.com/apachecn/fasttext-doc-zh/blob/v0.1.0/doc/zh/language-identification.md) | [@wnma](https://github.com/wnma3mz)        |      |
 | [options](https://github.com/apachecn/fasttext-doc-zh/blob/v0.1.0/doc/zh/options.md) | [@片刻](https://github.com/jiangzhonglian) |      |

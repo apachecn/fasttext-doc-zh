@@ -5,18 +5,18 @@ title: Language identification
 
 ### 说明
 
-我们发布了两种语言识别模型，可以识别176种语言（请参阅下面的ISO代码列表）。这些模型是通过[Wikipedia](https://www.wikipedia.org/)，[Tatoeba](https://tatoeba.org/eng/)和[SETimes](http://nlp.ffzg.hr/resources/corpora/setimes/)的数据进行训练，在[CC-BY-SA](http://creativecommons.org/licenses/by-sa/3.0/)下使用。
+我们发布了两种语言识别模型，可以识别176种语言（请参阅下面的ISO代码列表）。 这些模型是通过 [Wikipedia](https://www.wikipedia.org/) ， [Tatoeba](https://tatoeba.org/eng/)和 [SETimes](http://nlp.ffzg.hr/resources/corpora/setimes/) 的数据进行训练，在 [CC-BY-SA](http://creativecommons.org/licenses/by-sa/3.0/) 下使用。
 
 我们发布两个版本的模型：
 
-* [lid.176.bin](https://s3-us-west-1.amazonaws.com/fasttext-vectors/supervised_models/lid.176.bin)，这个模型更快更准确，但有一个文件的大小有126MB;
-* [lid.176.ftz](https://s3-us-west-1.amazonaws.com/fasttext-vectors/supervised_models/lid.176.ftz)，这是个只有917kB的压缩版的模型。
+* [lid.176.bin](https://s3-us-west-1.amazonaws.com/fasttext-vectors/supervised_models/lid.176.bin) ，这个模型更快更准确，但有一个文件的大小有126MB;
+* [lid.176.ftz](https://s3-us-west-1.amazonaws.com/fasttext-vectors/supervised_models/lid.176.ftz) ，这是个只有917kB的压缩版的模型。
 
 这些模型都是使用UTF-8数据进行训练的，因此需要使用UTF-8作为输入。
 
 ### 许可
 
-这些模型根据[*Creative Commons Attribution-Share-Alike License 3.0*](https://creativecommons.org/licenses/by-sa/3.0/)进行发布。
+这些模型根据 [*Creative Commons Attribution-Share-Alike License 3.0*](https://creativecommons.org/licenses/by-sa/3.0/) 进行发布。
 
 ### 支持的语言列表
 ```

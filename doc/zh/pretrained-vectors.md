@@ -3,13 +3,13 @@ id: pretrained-vectors
 title: Wiki word vectors
 ---
 
-我们正在为294种语言发布 pre-trained 的单词向量, 并使用 fastText 在 [*维基百科*](https://www.wikipedia.org) 上进行了训练. 这些 300维 的向量是通过使用 [*Bojanowski 等人 (2016)*](https://arxiv.org/abs/1607.04606) 描述的 skip-gram 模型（使用: 默认参数）获得的.
+我们正在为 294 种语言发布预训练的单词向量, 并使用 fastText 在 [*维基百科*](https://www.wikipedia.org) 上进行了训练. 这些 300 维的向量是通过使用 [*Bojanowski 等人 (2016)*](https://arxiv.org/abs/1607.04606) 描述的 skip-gram 模型（使用: 默认参数）获得的.
 
 请注意, 新版本的多语言词语向量可在: [https://fasttext.cc/docs/en/crawl-vectors.html].
 
 ### Models(模型)
 
-这些模型可以从中下载:
+这些模型可以从下面下载:
 
 ||||
 |-|-|-|

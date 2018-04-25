@@ -56,7 +56,7 @@ def load_vectors(fname):
 
 ### 参考资料
 
-如果你是用这些词向量，请引用下面这些文章：
+如果你使用这些词向量，请引用下面这些文章：
 
 E. Grave\*, P. Bojanowski\*, P. Gupta, A. Joulin, T. Mikolov, [*Learning Word Vectors for 157 Languages*](https://arxiv.org/abs/1802.06893)
 

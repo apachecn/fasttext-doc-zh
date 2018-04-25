@@ -13,22 +13,6 @@ FastText 是一个用于高效学习单词表示和句子分类的库。
 
 ## 项目负责人
 
-* [@片刻](https://github.com/jiangzhonglian)
-# FastText 中文文档
-
-FastText 是一个用于高效学习单词表示和句子分类的库。
-
-官方地址: <https://fasttext.cc>
-中文社区: <http://fasttext.apachecn.org/>
-
-## 文档地址
-
-* FastText 中文社区: <http://fasttext.apachecn.org/>
-* FastText 中文文档: <http://fasttext.apachecn.org/cn/docs/0.1.0/>
-* FastText 英文文档: <http://fasttext.apachecn.org/en/docs/0.1.0/>
-
-## 项目负责人
-
 * [@wnma](https://github.com/wnma3mz)
 * [@Lisanaaa](https://github.com/Lisanaaa)
 
@@ -64,6 +48,6 @@ FastText 是一个用于高效学习单词表示和句子分类的库。
 ## 建议反馈
 
 - 联系项目负责人 [@wnma](https://github.com/wnma3mz)或者 [@Lisanaaa](https://github.com/Lisanaaa).
-- 在我们的 [apachecn/pytorch-doc-zh](https://github.com/apachecn/fasttext-doc-zh) github 上提 issue.
+- 在我们的 [apachecn/fasttext-doc-zh](https://github.com/apachecn/fasttext-doc-zh) github 上提 issue.
 - 发邮件送到 Email: fasttext#apachecn.org (#替换成@) .
 - 在我们的 [组织学习交流群](http://www.apachecn.org/organization/348.html) 中联系群主/管理员即可.

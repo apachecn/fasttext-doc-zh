@@ -38,4 +38,4 @@ title: References
 }
 ```
 
-(\* These authors contributed equally.)
+(\* 这些作者贡献相同。)

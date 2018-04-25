@@ -9,10 +9,10 @@ title: English word vectors
 
 可以在下面下载在不同来源学习过的预先训练过的单词向量：
 
-1. [wiki-news-300d-1M.vec.zip](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M.vec.zip):一百万的词向量，这些词向量是在2017维基百科，UMBC基于网络的语料库和statmt.org新闻数据集训练得到的(16B)
-2. [wiki-news-300d-1M-subword.vec.zip](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M-subword.vec.zip): 一百万的带有子词信息的词向量，这些词向量是在2017维基百科，UMBC基于网络的语料库和statmt.org新闻数据集的训练得到的(16B)
+1. [wiki-news-300d-1M.vec.zip](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M.vec.zip) :一百万的词向量，这些词向量是在2017维基百科，UMBC基于网络的语料库和statmt.org新闻数据集训练得到的(16B)
+2. [wiki-news-300d-1M-subword.vec.zip](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M-subword.vec.zip) : 一百万的带有子词信息的词向量，这些词向量是在2017维基百科，UMBC基于网络的语料库和 statmt.org 新闻数据集的训练得到的(16B)
 
-3. [crawl-300d-2M.vec.zip](https://s3-us-west-1.amazonaws.com/fasttext-vectors/crawl-300d-2M.vec.zip): 两百万的词向量，这些词向量是在Common Crawl上训练得到的。(600B)
+3. [crawl-300d-2M.vec.zip](https://s3-us-west-1.amazonaws.com/fasttext-vectors/crawl-300d-2M.vec.zip) : 两百万的词向量，这些词向量是在 Common Crawl 上训练得到的。(600B)
 
 ### 格式
 
@@ -23,7 +23,7 @@ title: English word vectors
 
 ### 许可证明
 
-这些词向量在[*Creative Commons Attribution-Share-Alike License 3.0*](https://creativecommons.org/licenses/by-sa/3.0/)可以看到。
+这些词向量在 [*Creative Commons Attribution-Share-Alike License 3.0*](https://creativecommons.org/licenses/by-sa/3.0/) 可以看到。
 
 ### 参考资料
 

@@ -22,7 +22,7 @@ $ wget https://github.com/facebookresearch/fastText/archive/v0.1.0.zip
 $ unzip v0.1.0.zip
 ```
 
-移动到fastText目录并构建它:
+移动到 fastText 目录并构建它:
 
 ```bash
 $ cd fastText-0.1.0

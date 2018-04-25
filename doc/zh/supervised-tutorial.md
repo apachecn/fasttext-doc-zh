@@ -272,8 +272,8 @@ Bigrams 特别有趣，因为对于大多数句子，只需查看 n-gram 的集�
 
 ## Scaling things up
 
-Since we are training our model on a few thousands of examples, the training only takes a few seconds. But training models on larger datasets, with more labels can start to be too slow. A potential solution to make the training faster is to use the hierarchical softmax, instead of the regular softmax [Add a quick explanation of the hierarchical softmax]. This can be done with the option `-loss hs`:
-由于我们正在通过几千个示例来训练我们的模型，所以训练只需几秒钟。但是在更大的数据集上训练模型，使用更多的标签可能会太慢。 使训练更快的潜在解决方案是使用分层softmax，而不是常规softmax [添加分层softmax的快速解释]。 这可以通过选项'-loss hs`完成：
+由于我们正在通过几千个示例来训练我们的模型，所以训练只需几秒钟。但是在更大的数据集上训练模型，使用更多的标签可能会太慢。 使训练更快的潜在解决方案是使用hierarchical softmax，而不是 regular softmax [添加 hierarchical softmax 的快速解释]。 这可以通过选项 `-loss hs` 完成：
+
 ```bash
 >> ./fasttext supervised -input cooking.train -output model_cooking -lr 1.0 -epoch 25 -wordNgrams 2 -bucket 200000 -dim 50 -loss hs
 Read 0M words
@@ -282,8 +282,8 @@ Number of labels: 734
 Progress: 100.0%  words/sec/thread: 2199406  lr: 0.000000  loss: 1.718807  eta: 0h0m 
 ```
 
-Training should now take less than a second.
+现在训练时间应该不到一秒。
 
-## Conclusion
+## 结论
 
 In this tutorial, we gave a brief overview of how to use fastText to train powerful text classifiers. We had a light overview of some of the most important options to tune.

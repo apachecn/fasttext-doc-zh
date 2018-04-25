@@ -3,11 +3,11 @@ id: crawl-vectors
 title: Word vectors for 157 languages
 ---
 
-我们发布了之前训练的157种语言的词向量，这些词向量是用 fasttext 在 [*Common Crawl*](http://commoncrawl.org/) 和 [*Wikipedia*](https://www.wikipedia.org) 上训练得出的
+我们发布了之前训练的 157 种语言的词向量，这些词向量是用 fasttext 在 [*Common Crawl*](http://commoncrawl.org/) 和 [*Wikipedia*](https://www.wikipedia.org) 上训练得出的
 
-这些词向量是由CBOW训练而成，而且所使用的CBOW模型考虑了位置权重，包含了300个维度，并且也考虑了长度为5，包含十个负样本的大小为5的窗体的字符N元模型。
+这些词向量是由 CBOW 训练而成，而且所使用的 CBOW 模型考虑了位置权重，包含了 300个 维度，并且也考虑了长度为 5，包含十个负样本的大小为 5 的窗体的字符 N 元模型。
 
-并且我们也发布了三种新的可供分析的数据集，分别是法语，印地语和波兰语
+并且我们也发布了三种新的可供分析的数据集，分别是法语，印地语和波兰语。
 
 ### 格式
 
@@ -18,7 +18,7 @@ title: Word vectors for 157 languages
 $ ./fasttext print-word-vectors wiki.it.300.bin < oov_words.txt
 ```
 
-其中oov_words.txt文件包含了词汇表之外的单词
+其中 oov_words.txt 文件包含了词汇表之外的单词
 
 
 在文本格式下，每一行包含一个单词，并且它的向量紧随其后
@@ -46,7 +46,7 @@ def load_vectors(fname):
 
 对于使用拉丁文，西里尔文，希伯来文或希腊文的语言，我们用来自于 [*Europarl*](http://www.statmt.org/europarl/) 的预处理工具进行分词
 
-剩下的语言，我们用ICU进行分词
+剩下的语言，我们用 ICU 进行分词
 
 想要了解更多关于这些模型训练的信息，可以查看这篇文章 [*Learning Word Vectors for 157 Languages*](https://arxiv.org/abs/1802.06893).
 

@@ -55,7 +55,7 @@ The commands supported by fasttext are:
 
 ## 获取和准备数据
 
-正如上述介绍中所提到的，我们需要标记数据来训练我们的监督分类器。 在本教程中，我们将构建一个分类器来自动识别烹饪问题的类别。 让我们从[Stackexchange 网站的烹饪部分](http://cooking.stackexchange.com/)下载问题示例及其相关标签：
+正如上述介绍中所提到的，我们需要标记数据来训练我们的监督分类器。 在本教程中，我们将构建一个分类器来自动识别烹饪问题的类别。 让我们从[Stack exchange 网站的烹饪部分](http://cooking.stackexchange.com/)下载问题示例及其相关标签：
 
 ```bash
 >> wget https://s3-us-west-1.amazonaws.com/fasttext-vectors/cooking.stackexchange.tar.gz && tar xvzf cooking.stackexchange.tar.gz

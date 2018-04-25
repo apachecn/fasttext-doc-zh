@@ -5,12 +5,12 @@ title: Get started
 
 ## 什么是快速文本?
 
-fastText是一个用于高效学习单词表示和句子分类的库.
+fastText 是一个用于高效学习单词表示和句子分类的库。
 
 ## 要求
 
-fastText建立在现代 Mac OS 和 Linux 发行版上.
-由于它使用C ++ 11功能, 因此需要具有良好C ++ 11支持的编译器.
+fastText 建立在现代 Mac OS 和 Linux 发行版上.
+由于它使用 C++11功能, 因此需要具有良好 C++11 支持的编译器.
 这些包括:
 
 * (gcc-4.6.3 or newer) or (clang-3.3 or newer)
@@ -31,6 +31,6 @@ $ cd fastText
 $ make
 ```
 
-这将产生所有类以及主二进制文件的目标文件 `fasttext`.
-如果您不打算使用默认的系统范围编译器, 请更新 Makefile 开头定义的两个宏 (CC 和 INCLUDES).
+这将产生所有类以及主二进制文件的目标文件 `fasttext`。
+如果您不打算使用默认的系统范围编译器, 请更新 Makefile 开头定义的两个宏 (CC 和 INCLUDES)。
 

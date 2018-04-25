@@ -286,4 +286,4 @@ Progress: 100.0%  words/sec/thread: 2199406  lr: 0.000000  loss: 1.718807  eta: 
 
 ## 结论
 
-In this tutorial, we gave a brief overview of how to use fastText to train powerful text classifiers. We had a light overview of some of the most important options to tune.
+在本教程中，我们简要介绍了如何使用 fastText 来训练强大的文本分类器。 我们对一些最重要的可调节选项（如 `epoch` ）进行了简要介绍。

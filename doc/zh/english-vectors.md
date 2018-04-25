@@ -3,29 +3,31 @@ id: english-vectors
 title: English word vectors
 ---
 
-This page gathers several pre-trained word vectors trained using fastText.
+这一篇整合了一些之前用fasttext训练的词向量。
 
-### Download pre-trained word vectors
+### 下载经过训练的词向量
 
-Pre-trained word vectors learned on different sources can be downloaded below:
+可以在下面下载在不同来源学习过的预先训练过的单词向量：
 
-1. [wiki-news-300d-1M.vec.zip](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M.vec.zip): 1 million word vectors trained on Wikipedia 2017, UMBC webbase corpus and statmt.org news dataset (16B tokens).
-2. [wiki-news-300d-1M-subword.vec.zip](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M-subword.vec.zip): 1 million word vectors trained with subword infomation on Wikipedia 2017, UMBC webbase corpus and statmt.org news dataset (16B tokens).
-3. [crawl-300d-2M.vec.zip](https://s3-us-west-1.amazonaws.com/fasttext-vectors/crawl-300d-2M.vec.zip): 2 million word vectors trained on Common Crawl (600B tokens).
+1. [wiki-news-300d-1M.vec.zip](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M.vec.zip) :一百万的词向量，这些词向量是在2017维基百科，UMBC基于网络的语料库和statmt.org新闻数据集训练得到的(16B)
+2. [wiki-news-300d-1M-subword.vec.zip](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M-subword.vec.zip) : 一百万的带有子词信息的词向量，这些词向量是在2017维基百科，UMBC基于网络的语料库和 statmt.org 新闻数据集的训练得到的(16B)
 
-### Format
+3. [crawl-300d-2M.vec.zip](https://s3-us-west-1.amazonaws.com/fasttext-vectors/crawl-300d-2M.vec.zip) : 两百万的词向量，这些词向量是在 Common Crawl 上训练得到的。(600B)
 
-The first line of the file contains the number of words in the vocabulary and the size of the vectors.
-Each line contains a word followed by its vectors, like in the default fastText text format.
-Each value is space separated. Words are ordered by descending frequency.
+### 格式
 
-### License
+文件的第一行包含了词汇表中单词的数量以及向量的大小。
+每一行包含了一个单词和它的向量，就像是fasttext文本格式默认的那种样子。
+每个值都是由空格隔开。
+单词是按照频数降序排列的。
 
-These word vectors are distributed under the [*Creative Commons Attribution-Share-Alike License 3.0*](https://creativecommons.org/licenses/by-sa/3.0/).
+### 许可证明
 
-### References
+这些词向量在 [*Creative Commons Attribution-Share-Alike License 3.0*](https://creativecommons.org/licenses/by-sa/3.0/) 可以看到。
 
-If you use these word vectors, please cite the following paper:
+### 参考资料
+
+如果你使用了这些词向量，请引用下面的文章：
 
 T. Mikolov, E. Grave, P. Bojanowski, C. Puhrsch, A. Joulin. [*Advances in Pre-Training Distributed Word Representations*](https://arxiv.org/abs/1712.09405)
 

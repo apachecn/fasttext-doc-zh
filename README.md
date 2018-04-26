@@ -35,7 +35,7 @@ FastText 是一个用于高效学习单词表示和句子分类的库。
 | [pretrained-vectors](https://github.com/apachecn/fasttext-doc-zh/blob/v0.1.0/doc/zh/pretrained-vectors.md) | [@片刻](https://github.com/jiangzhonglian) |   [@Lisanaaa](https://github.com/Lisanaaa)   |
 | [references](https://github.com/apachecn/fasttext-doc-zh/blob/v0.1.0/doc/zh/references.md) | [@片刻](https://github.com/jiangzhonglian) |   [@Lisanaaa](https://github.com/Lisanaaa)   |
 | [supervised-models](https://github.com/apachecn/fasttext-doc-zh/blob/v0.1.0/doc/zh/supervised-models.md) | [@片刻](https://github.com/jiangzhonglian) |   [@Lisanaaa](https://github.com/Lisanaaa)   |
-| [supervised-tutorial](https://github.com/apachecn/fasttext-doc-zh/blob/v0.1.0/doc/zh/supervised-tutorial.md) | [@Lisanaaa](https://github.com/Lisanaaa)   |      |
+| [supervised-tutorial](https://github.com/apachecn/fasttext-doc-zh/blob/v0.1.0/doc/zh/supervised-tutorial.md) | [@Lisanaaa](https://github.com/Lisanaaa)   | [@wnma](https://github.com/wnma3mz) |
 | [support](https://github.com/apachecn/fasttext-doc-zh/blob/v0.1.0/doc/zh/support.md) | [@片刻](https://github.com/jiangzhonglian) |   [@Lisanaaa](https://github.com/Lisanaaa)   |
 | [unsupervised-tutorials](https://github.com/apachecn/fasttext-doc-zh/blob/v0.1.0/doc/zh/unsupervised-tutorials.md) | [@wnma](https://github.com/wnma3mz)        |      |
 

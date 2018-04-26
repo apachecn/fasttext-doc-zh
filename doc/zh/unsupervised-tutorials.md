@@ -4,7 +4,7 @@ title: Word representations
 ---
 现代机器学习中的一个普遍观点是用向量表示单词。这些向量获取有关语言的隐藏信息，如词类或语义。它也被用来提高文本分类器的性能。
 
-在本教程中，我们将演示如何使用fastText来构建这些词向量。需要下载并安装fastText，请按照[文本分类教程](https://fasttext.cc/docs/en/supervised-tutorial.html)的第一步进行操作。
+在本教程中，我们将演示如何使用 fastText 来构建这些词向量。需要下载并安装 fastText，请按照[文本分类教程](https://fasttext.cc/docs/en/supervised-tutorial.html)的第一步进行操作。
 
 ## 获取数据
 
@@ -14,7 +14,7 @@ title: Word representations
 wget https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2
 ```
 
-下载维基百科语料库需要一些时间。有一种替代方案就是我们只研究英语维基百科的前10亿字节（大概1G不到）。可以在Matt Mahoney的[网站](http://mattmahoney.net/)上找到：
+下载维基百科语料库需要一些时间。有一种替代方案就是我们只研究英语维基百科的前 10 亿字节（大概 1G 不到）。可以在 Matt Mahoney 的[网站](http://mattmahoney.net/)上找到：
 
 ```bash
 $ mkdir data
@@ -22,7 +22,7 @@ $ wget -c http://mattmahoney.net/dc/enwik9.zip -P data
 $ unzip data/enwik9.zip -d data
 ```
 
-原始维基百科转储包含大量的HTML/XML数据。我们使用与fastText一起打包的`wikifil.pl`脚本对其进行预处理（该脚本最初由Matt Mahoney开发，可以在他的[网站](http://mattmahoney.net/)上找到）
+原始维基百科转储包含大量的 HTML/XML 数据。我们使用与 fastText 一起打包的 `wikifil.pl` 脚本对其进行预处理（该脚本最初由 Matt Mahoney 开发，可以在他的[网站](http://mattmahoney.net/)上找到）
 
 ```bash
 $ perl wikifil.pl data/enwik9 > data/fil9
@@ -46,9 +46,9 @@ $ mkdir result
 $ ./fasttext skipgram -input data/fil9 -output result/fil9
 ```
 
-解释这行命令：`./fastext`用**skipgram**模型（或者是**cbow**模型）调用fastText二进制的可执行文件（在这里参考如何安装fastText）。然后，'-input'选项要求我们指定输入数据的位置，'-output'指定输出要保存的位置。
+解释这行命令： `./fastext` 用 **skipgram** 模型（或者是 **cbow** 模型）调用 fastText 二进制的可执行文件（在这里参考如何安装 fastText ）。然后，'-input' 选项要求我们指定输入数据的位置，'-output' 指定输出要保存的位置。
 
-当fastText运行时，屏幕上会显示进度和预计完成时间。一旦程序结束，`result`目录中应该有两个文件：
+当 fastText 运行时，屏幕上会显示进度和预计完成时间。一旦程序结束，`result` 目录中应该有两个文件：
 
 ```bash
 $ ls -l result
@@ -56,7 +56,7 @@ $ ls -l result
 -rw-r-r-- 1 bojanowski 1876110778 190004182 Dec 20 11:01 fil9.vec
 ```
 
-`fil9.bin`是一个二进制文件，用于存储整个fastText模型，并可以在之后重新加载。 `fil9.vec`是一个包含词向量的文本文件，词汇表中的一个单词对应一行：
+`fil9.bin` 是一个二进制文件，用于存储整个 fastText 模型，并可以在之后重新加载。 `fil9.vec` 是一个包含词向量的文本文件，词汇表中的一个单词对应一行：
 
 ```bash
 $ head -n 4 result/fil9.vec
@@ -68,41 +68,41 @@ one 0.32731 0.044409 -0.46484 0.14716 0.7431 0.24684 -0.11301 0.51721 0.73262 ..
 
 第一行说明了单词数量和向量维数。随后的行是词汇表中所有单词的词向量，按降序排列。
 
-## 高级读者：skipgram与cbow两种模型
+## 高级读者：skipgram 与 cbow 两种模型
 
-fastText提供了两种用于计算词表示的模型：skipgram和cbow ('**c**ontinuous-**b**ag-**o**f-**w**ords')。
+fastText 提供了两种用于计算词表示的模型：skipgram 和 cbow ('**c**ontinuous-**b**ag-**o**f-**w**ords')。
 
-skipgram模型是学习近邻的单词来预测目标单词。 另一方面, cbow模型是根据目标词的上下文来预测目标词。上下文是指在目标词左边和右边的固定单词数和。
+skipgram 模型是学习近邻的单词来预测目标单词。 另一方面, cbow 模型是根据目标词的上下文来预测目标词。上下文是指在目标词左边和右边的固定单词数和。
 
-让我们用一个例子来说明这种差异：给出句子*'Poets have been mysteriously silent on the subject of cheese'*和目标单词'*silent*'，skipgram 模型随机取近邻词尝试预测目标词，如'*subject*'或'*mysteriously*'。cbow模型使用目标单词固定数量的左边和右边单词，，如{*been*, *mysteriously*, *on*, *the*}，并使用它们的向量和来预测目标单词。下图用另一个例子总结了这种差异。
+让我们用一个例子来说明这种差异：给出句子 *'Poets have been mysteriously silent on the subject of cheese'* 和目标单词 '*silent*'，skipgram 模型随机取近邻词尝试预测目标词，如 '*subject*'或'*mysteriously*'。cbow 模型使用目标单词固定数量的左边和右边单词，，如 {*been*, *mysteriously*, *on*, *the*}，并使用它们的向量和来预测目标单词。下图用另一个例子总结了这种差异。
 
 ![cbow vs skipgram](https://fasttext.cc/img/cbo_vs_skipgram.png)
-要使用fastText训练cbow模型，请运行下面这个命令：
+要使用 fastText 训练 cbow 模型，请运行下面这个命令：
 
 ```bash
 ./fasttext cbow -input data/fil9 -output result/fil9
 ```
 
-通过这个练习，我们观察到skipgram模型会比cbow模型在subword information上效果更好
-在实践中，我们观察到skipgram模型比cbow在子词信息方面效果更好。
+通过这个练习，我们观察到 skipgram 模型会比 cbow 模型在 subword information 上效果更好
+在实践中，我们观察到 skipgram 模型比 cbow 在子词信息方面效果更好。
 
 ## 高级读者：调整参数
 
-到目前为止，我们使用默认参数运行fastText，但根据数据，这些参数可能不是最优的。 让我们介绍一下词向量的一些关键参数。
+到目前为止，我们使用默认参数运行 fastText，但根据数据，这些参数可能不是最优的。 让我们介绍一下词向量的一些关键参数。
 
-模型的最重要的参数是维度和子词的大小范围。 维度（*dim*）控制向量的大小，维度越多，它们就需要学习更多的数据来获取越多的信息。 但是，如果它们太大，就会越来越难以训练。 默认情况下，我们使用100个维度，一般情况下使用100到300范围内中的值。 子词是包含在最小尺寸（*minn*）和最大尺寸（*maxn*）之间的字中的所有子字符串。 默认情况下，我们取3到6个字符的所有子词，但不同语言的适用范围可能不同：
+模型的最重要的参数是维度和子词的大小范围。 维度（*dim*）控制向量的大小，维度越多，它们就需要学习更多的数据来获取越多的信息。 但是，如果它们太大，就会越来越难以训练。 默认情况下，我们使用 100个 维度，一般情况下使用 100 到 300 范围内中的值。 子词是包含在最小尺寸（*minn*）和最大尺寸（*maxn*）之间的字中的所有子字符串。 默认情况下，我们取 3 到 6 个字符的所有子词，但不同语言的适用范围可能不同：
 
 ```bash
 $ ./fasttext skipgram -input data/fil9 -output result/fil9 -minn 2 -maxn 5 -dim 300
 ```
 
-根据您已有的数据量，您可能需要更改训练参数。 *epoch*参数控制将循环多少次的数据。 默认情况下，我们遍历数据集5次。 如果你的数据集非常庞大，你可能希望更少地循环它。另一个重要参数是学习率 - *lr*）。 学习率越高，模型收敛到最优解的速度越快，但过拟合数据集的风险也越高。 默认值是0.05，这是一个很好的折中值。 如果你想调整它，我们建议留在[0.01，1]的范围内：
+根据您已有的数据量，您可能需要更改训练参数。 *epoch* 参数控制将循环多少次的数据。 默认情况下，我们遍历数据集 5 次。 如果你的数据集非常庞大，你可能希望更少地循环它。另一个重要参数是学习率 -*lr*）。 学习率越高，模型收敛到最优解的速度越快，但过拟合数据集的风险也越高。 默认值是 0.05，这是一个很好的折中值。 如果你想调整它，我们建议留在 [0.01，1] 的范围内：
 
 ```bash
 $ ./fasttext skipgram -input data/fil9 -output result/fil9 -epoch 1 -lr 0.5
 ```
 
-最后，fastText是多线程的，默认使用12个线程。 如果CPU核心数较少（只有4个），则可以使用*thread*参数轻松设置线程数：
+最后，fastText 是多线程的，默认使用 12 个线程。 如果 CPU 核心数较少（只有 4 个），则可以使用 *thread* 参数轻松设置线程数：
 
 ```bash
 $ ./fasttext skipgram -input data/fil9 -output result/fil9 -thread 4
@@ -111,9 +111,9 @@ $ ./fasttext skipgram -input data/fil9 -output result/fil9 -thread 4
 
 ## 打印词向量
 
-直接从`fil9.vec`文件中搜索和打印词向量非常麻烦。 幸运的是，fastText中有一个`print-word-vectors`功能。
+直接从 `fil9.vec` 文件中搜索和打印词向量非常麻烦。 幸运的是，fastText 中有一个 `print-word-vectors` 功能。
 
-例如，我们可以使用以下命令打印词*asparagus*，*pidgey*和*yellow*的词向量：
+例如，我们可以使用以下命令打印词 *asparagus*，*pidgey* 和 *yellow* 的词向量：
 
 ```bash
 $ echo "asparagus pidgey yellow" | ./fasttext print-word-vectors result/fil9.bin
@@ -136,14 +136,14 @@ $ echo "enviroment" | ./fasttext print-word-vectors result/fil9.bin
 
 查看最近邻是检查词向量效果的一种简单方法。 这给出了向量能够获取的语义信息类型的直觉。
 
-这可以通过*nn*功能来实现。 例如，我们可以通过运行以下命令来查询单词的最近邻：
+这可以通过 *nn* 功能来实现。 例如，我们可以通过运行以下命令来查询单词的最近邻：
 
 ```bash
 $ ./fasttext nn result/fil9.bin
 Pre-computing word vectors... done.
 ```
 
-然后我们会提示输入我们的查询词，让我们试试*asparagus*：
+然后我们会提示输入我们的查询词，让我们试试 *asparagus*：
 
 ```bash
 Query word? asparagus
@@ -159,7 +159,7 @@ celery 0.774529
 beets 0.773984
 ```
 
-太好了！ 看来vegetable的向量是相似的。 请注意，最近邻是*asparagus*本身，这意味着这个词出现在数据集中。 那么pokemons?
+太好了！ 看来 vegetable 的向量是相似的。 请注意，最近邻是 *asparagus* 本身，这意味着这个词出现在数据集中。 那么 pokemons?
 
 ```bash
 Query word? pidgey
@@ -175,7 +175,7 @@ beedrill 0.741579
 charmeleon 0.733625
 ```
 
-相同pokemons的不同进化有紧邻的向量！ 但是我们拼错的单词呢，它的向量接近于任何合理的东西吗？ 让我们看看：
+相同 pokemons 的不同进化有紧邻的向量！ 但是我们拼错的单词呢，它的向量接近于任何合理的东西吗？ 让我们看看：
 
 ```bash
 Query word? enviroment
@@ -195,13 +195,13 @@ ecotourism 0.697081
 
 ## 高级读者：计算相似度
 
-为了找到最近邻，我们需要计算单词之间的相似度分数。 我们的单词用连续的词向量来表示，因此我们可以对它们应用简单的相似性。 尤其我们使用两个向量之间角度的余弦。 计算词汇表中所有单词的相似度，并显示10个最相似的单词。 当然，如果单词出现在词汇表中，它将出现在顶部，其相似度为1。
+为了找到最近邻，我们需要计算单词之间的相似度分数。 我们的单词用连续的词向量来表示，因此我们可以对它们应用简单的相似性。 尤其我们使用两个向量之间角度的余弦。 计算词汇表中所有单词的相似度，并显示 10 个最相似的单词。 当然，如果单词出现在词汇表中，它将出现在顶部，其相似度为 1。
 
 ## 字的类比
 
 用类比的思想，我们可以进行词的类比。 例如，我们可以看到我们的模型是否可以根据柏林是德国的首都来猜测法国的首都是什么，
 
-这可以通过*analogies*功能来完成。 它需要三个词（如*德国柏林法国*）来输出类别结果：
+这可以通过 *analogies* 功能来完成。 它需要三个词（如*德国柏林法国*）来输出类别结果：
 
 ```bash
 $ ./fasttext analogies result/fil9.bin
@@ -219,7 +219,7 @@ bordeaux 0.740635
 pigneaux 0.736122
 ```
 
-我们的模型提供了正确的答案*Paris*。 让我们来看一个不太明显的例子：
+我们的模型提供了正确的答案 *Paris*。 让我们来看一个不太明显的例子：
 
 ```bash
 Query triplet (A - B + C)? psx sony nintendo
@@ -235,11 +235,11 @@ dreamcast 0.74907
 famicom 0.745298
 ```
 
-我们的模型认为*psx*的*nintendo*类比是*gamecube*，这似乎是合理的。 当然，类比的质量取决于用于训练模型的数据集，并且只能出现存在数据集中的单词。
+我们的模型认为 *psx* 的 *nintendo* 类比是 *gamecube*，这似乎是合理的。 当然，类比的质量取决于用于训练模型的数据集，并且只能出现存在数据集中的单词。
 
-## 字符n-gram的重要性
+## 字符 n-gram 的重要性
 
-使用子字级信息对于为未知单词构建向量特别有趣。 例如，维基百科上不存在*gearshift*这个词，但我们仍然可以查询其最接近的现有词语：
+使用子字级信息对于为未知单词构建向量特别有趣。 例如，维基百科上不存在 *gearshift* 这个词，但我们仍然可以查询其最接近的现有词语：
 
 ```bash
 Query word? gearshift
@@ -255,7 +255,7 @@ epicycles 0.744268
 gearboxes 0.73986
 ```
 
-大多数检索的单词共享大量的子字符串，但少数实际上完全不同，如*cogwheel*。 你可以尝试其他单词，如*sunbathe*或*grandnieces*。
+大多数检索的单词共享大量的子字符串，但少数实际上完全不同，如 *cogwheel*。 你可以尝试其他单词，如 *sunbathe* 或 *grandnieces*。
 
 现在我们已经看到了未知词的子词信息的兴趣，我们来检查它与不使用子词信息的模型的比较。 要训练没有子词的模型，只需运行以下命令：
 
@@ -265,7 +265,7 @@ $ ./fasttext skipgram -input data/fil9 -output result/fil9-none -maxn 0
 
 结果保存在`result/fil9-non.vec`和`result/fil9-non.bin`中。
 
-为了说明这种差异，让我们在维基百科中使用一个不常见的单词，例如*accomodation*，它是拼写错误的*accommodation*。这里是没有子词的最近邻：
+为了说明这种差异，让我们在维基百科中使用一个不常见的单词，例如 *accomodation*，它是拼写错误的 *accommodation*。这里是没有子词的最近邻：
 
 ```bash
 $ ./fasttext nn result/fil9-none.bin
@@ -298,8 +298,8 @@ accomodate 0.703177
 hospitality 0.701426
 ```
 
-最近邻在词*accommodation*附近获取到了不同的变化。 我们还可以获得语义相关的词语，例如*amenities*或*lodging*。
+最近邻在词 *accommodation* 附近获取到了不同的变化。 我们还可以获得语义相关的词语，例如 *amenities* 或 *lodging*。
 
 ## 结论
 
-在本教程中，我们展示了如何从维基百科获取词向量。 这可以通过任何语言完成，我们提供[预训练模型](https://fasttext.cc/docs/en/pretrained-vectors.html)，默认设置为294。
+在本教程中，我们展示了如何从维基百科获取词向量。 这可以通过任何语言完成，我们提供[预训练模型](https://fasttext.cc/docs/en/pretrained-vectors.html)，默认设置为 294。

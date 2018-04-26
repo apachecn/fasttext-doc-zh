@@ -7,9 +7,9 @@ title: Text classification
 
 ## 什么是文本分类？
 
-文本分类的目标是将文档（如电子邮件，博文，短信，产品评论等）分配给一个或多个类别。 这些类别可以是评论分数，垃圾邮件与非垃圾邮件的划分，或者文档的编写语言。 如今，构建这种分类器的主要方法是机器学习，即从样本中学习分类规则。 为了构建这样的分类器，我们需要标注数据，它由文档及其相应的类别（也称为标签或标注）组成。
+文本分类的目标是将文档（如电子邮件，博文，短信，产品评论等）分为一个或多个类别。 这些类别可以是根据评论分数，垃圾邮件与非垃圾邮件来划分，或者文档的编写语言。 如今，构建这种分类器的主要方法是机器学习，即从样本中学习分类规则。 为了构建这样的分类器，我们需要标注数据，它由文档及其相应的类别（也称为标签或标注）组成。
 
-作为一个例子，我们建立了一个分类器，该分类器将 [stack exchange](https://stackexchange.com/) 网站上有关烹饪的问题自动分类为几个可能的标签之一，例如`pot`，`bowl` 或 `baking`。
+给一个例子，我们建立了一个分类器，该分类器将 [stack exchange](https://stackexchange.com/) 网站上有关烹饪的问题自动分类为几个可能的标签之一，例如`pot`，`bowl` 或 `baking`。
 
 ##  安装 fastText
 
@@ -29,7 +29,7 @@ $ cd fastText-0.1.0
 $ make
 ```
 
-运行二进制文件（不带任何参数）将打印高级文档，显示 fastText 支持的不同用例：
+运行二进制文件（不带任何参数）将输出高级文档，显示 fastText 支持的不同用例：
 
 ```bash
 >> ./fasttext
@@ -55,7 +55,7 @@ The commands supported by fasttext are:
 
 ## 获取和准备数据
 
-正如上述介绍中所提到的，我们需要标记数据来训练我们的监督分类器。 在本教程中，我们将构建一个分类器来自动识别烹饪问题的类别。 让我们从[Stack exchange 网站的烹饪部分](http://cooking.stackexchange.com/)下载问题示例及其相关标签：
+正如上述介绍中所提到的，我们需要标记数据来训练我们的监督分类器。 在本教程中，我们将构建一个分类器来自动识别烹饪问题的类别。 让我们从[Stack exchange 网站的烹饪部分](http://cooking.stackexchange.com/)下载问题示例及其相应标签：
 
 ```bash
 >> wget https://s3-us-west-1.amazonaws.com/fasttext-vectors/cooking.stackexchange.tar.gz && tar xvzf cooking.stackexchange.tar.gz
@@ -106,7 +106,7 @@ Progress: 100.0%  words/sec/thread: 75109  lr: 0.000000  loss: 5.708354  eta: 0h
 
 *Why not put knives in the dishwasher?*
 
-模型预测出的标签是 `food-safety`，这是不相关的。 不知何故，这个模型似乎在简单的例子上反而失败了。 为了更好地了解其预测质量，我们通过运行以下验证数据对其进行测试：
+模型预测出的标签是 `food-safety`，这是不相关的。 不知道为什么，这个模型似乎在简单的例子上反而失败了。 为了更好地了解其预测质量，我们通过运行下面这个命令测试这个验证数据：
 
 ```bash
 >> ./fasttext test model_cooking.bin cooking.valid                 
@@ -140,17 +140,17 @@ Number of examples: 3000
 
 前五名是 `food-safety`, `baking`, `equipment`, `substitutions` and `bread`.
 
-因此，模型预测的五个标签中有一个是正确的，精确度为 0.20。 在三个真实标签中，只有 `equipment` 一个被该模型预测出，召回率为 0.33。
+因此，模型预测的五个标签中有一个是正确的，精确度为 0.20。 在三个真实标签中，只有 `equipment` 标签被该模型预测出，召回率为 0.33。
 
 更多详细信息，请参阅[相关维基百科页面](https://en.wikipedia.org/wiki/Precision_and_recall)。
 
 ## 使模型更好
 
-使用缺省参数运行 fastText 所获得的模型在分类新问题时非常糟糕。 让我们尝试通过更改默认参数来提高性能。
+使用默认参数运行 fastText 所获得的模型在分类新问题时非常糟糕。 让我们尝试通过更改默认参数来提高性能。
 
 ### 预处理数据
 
-看看这些数据，我们发现有些单词包含大写字母或标点符号。 提高我们模型性能的第一步之一是应用一些简单的预处理。 粗略的标准化可以通过命令行工具获得，例如`sed`和 `tr`：
+观察这些数据，我们发现有些单词包含大写字母或标点符号。 提高我们模型性能的第一步之一是采取一些简单的预处理。 粗略的标准化可以通过命令行工具获得，例如`sed`和 `tr`：
 
 ```bash
 >> cat cooking.stackexchange.txt | sed -e "s/\([.\!?,'/()]\)/ \1 /g" | tr "[:upper:]" "[:lower:]" > cooking.preprocessed.txt
@@ -174,7 +174,7 @@ R@1  0.0717
 Number of examples: 3000
 ```
 
-我们观察到，由于预处理，词汇量更小（从 14k 到 9k）。精确度也开始上升4％！
+我们观察到，由于预处理，词汇量变得更小了（从 14k 到 9k）。精确度也开始提高了4％！
 
 ### 更多的迭代和更快的学习速率
 
@@ -270,7 +270,7 @@ Bigrams 特别有趣，因为对于大多数句子，只需查看 n-gram 的集�
 让我们通过一个简单的练习来说明这一点，给定以下 bigrams，试着重构原始的句子：'all out'，'I am'，'bubblegum'，'out of' 和 'all all'。
 通常将一个单词称为一个 unigram。
 
-## Scaling things up
+## 扩大规模
 
 由于我们正在通过几千个示例来训练我们的模型，所以训练只需几秒钟。但是在更大的数据集上训练模型，使用更多的标签可能会太慢。 使训练更快的潜在解决方案是使用hierarchical softmax，而不是 regular softmax [添加 hierarchical softmax 的快速解释]。 这可以通过选项 `-loss hs` 完成：
 

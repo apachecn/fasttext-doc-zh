@@ -1,7 +1,4 @@
----
-id: pretrained-vectors
-title: Wiki word vectors
----
+# 维基词向量
 
 我们正在为 294 种语言发布预训练的单词向量, 并使用 fastText 在 [*维基百科*](https://www.wikipedia.org) 上进行了训练. 这些 300 维的向量是通过使用 [*Bojanowski 等人 (2016)*](https://arxiv.org/abs/1607.04606) 描述的 skip-gram 模型（使用: 默认参数）获得的.
 

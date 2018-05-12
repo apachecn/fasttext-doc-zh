@@ -1,7 +1,4 @@
----
-id: support
-title: Get started
----
+# 快速入门
 
 ## 什么是快速文本?
 

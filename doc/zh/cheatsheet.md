@@ -1,7 +1,4 @@
----
-id: cheatsheet
-title: Cheatsheet
----
+# Cheatsheet(备忘单)
 
 ## Word representation learning(词表示学习)
 

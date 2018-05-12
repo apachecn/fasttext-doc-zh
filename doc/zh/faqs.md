@@ -1,7 +1,4 @@
----
-id: faqs
-title:FAQ
----
+# 常问问题
 
 ## 什么是 fastText? 有教程吗?
 

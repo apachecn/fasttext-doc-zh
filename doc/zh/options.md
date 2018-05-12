@@ -1,7 +1,4 @@
----
-id: options
-title: List of options
----
+# 选项列表
 
 调用不带参数的命令来列出可用参数及其默认值:
 

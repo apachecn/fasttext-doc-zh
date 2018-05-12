@@ -1,7 +1,4 @@
----
-id: language-identification
-title: Language identification
----
+# 语言识别
 
 ### 说明
 

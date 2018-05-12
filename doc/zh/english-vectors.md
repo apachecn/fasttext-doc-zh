@@ -1,7 +1,4 @@
----
-id: english-vectors
-title: English word vectors
----
+# 英文单词向量
 
 这一篇整合了一些之前用 fasttext 训练的词向量。
 

@@ -1,7 +1,4 @@
----
-id: crawl-vectors
-title: Word vectors for 157 languages
----
+# 157种语言的词向量
 
 我们发布了之前训练的 157 种语言的词向量，这些词向量是用 fasttext 在 [*Common Crawl*](http://commoncrawl.org/) 和 [*Wikipedia*](https://www.wikipedia.org) 上训练得出的
 

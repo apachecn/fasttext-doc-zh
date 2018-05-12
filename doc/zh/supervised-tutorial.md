@@ -1,7 +1,4 @@
----
-id: supervised-tutorial
-title: Text classification
----
+# 文本分类
 
 文本分类是许多应用程序的核心问题，例如垃圾邮件检测，情感分析或智能回复。 在本教程中，我们将介绍如何使用fastText工具构建文本分类器。
 

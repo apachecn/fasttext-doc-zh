@@ -1,7 +1,5 @@
----
-id: unsupervised-tutorial
-title: Word representations
----
+# 词语表达
+
 现代机器学习中的一个普遍观点是用向量表示单词。这些向量获取有关语言的隐藏信息，如词类或语义。它也被用来提高文本分类器的性能。
 
 在本教程中，我们将演示如何使用 fastText 来构建这些词向量。需要下载并安装 fastText，请按照[文本分类教程](https://fasttext.cc/docs/en/supervised-tutorial.html)的第一步进行操作。

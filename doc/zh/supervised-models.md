@@ -1,7 +1,4 @@
----
-id: supervised-models
-title: Supervised models
----
+# 监督模型
 
 这个页面收集了几个预先训练好的监督模型，其训练数据来自于几个不同的数据集。
 

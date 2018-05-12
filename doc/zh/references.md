@@ -1,7 +1,4 @@
----
-id: references
-title: References
----
+# 参考
 
 如果使用此代码学习词语表示, 请引用 [1](#enriching-word-vectors-with-subword-information); 如果使用文本分类, 请引用 [2](#bag-of-tricks-for-efficient-text-classification)。
 

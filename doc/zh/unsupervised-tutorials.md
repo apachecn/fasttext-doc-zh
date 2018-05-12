@@ -1,20 +1,18 @@
----
-id: unsupervised-tutorial
-title: Word representations
----
-A popular idea in modern machine learning is to represent words by vectors. These vectors capture hidden information about a language, like word analogies or semantic. It is also used to improve performance of text classifiers.
+# 词语表达
 
-In this tutorial, we show how to build these word vectors with the fastText tool. To download and install fastText, follow the first steps of [the tutorial on text classification](https://fasttext.cc/docs/en/supervised-tutorial.html).
+现代机器学习中的一个普遍观点是用向量表示单词。这些向量获取有关语言的隐藏信息，如词类或语义。它也被用来提高文本分类器的性能。
 
-## Getting the data
+在本教程中，我们将演示如何使用 fastText 来构建这些词向量。需要下载并安装 fastText，请按照[文本分类教程](https://fasttext.cc/docs/en/supervised-tutorial.html)的第一步进行操作。
 
-In order to compute word vectors, you need a large text corpus. Depending on the corpus, the word vectors will capture different information. In this tutorial, we focus on Wikipedia's articles but other sources could be considered, like  news or Webcrawl (more examples [here](http://statmt.org/)). To download a raw dump of Wikipedia, run the following command: 
+## 获取数据
+
+为了计算词向量，你需要一个大型的文本语料库。根据语料库，词向量将获取不同的信息。在本教程中，我们使用了维基百科的文章，但可以考虑其他来源，如新闻或网页抓取（更多示例在[这里](http://statmt.org/)）。要下载维基百科的原始转储，请运行下面的命令：
 
 ```bash
 wget https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2
 ```
 
-Downloading  the Wikipedia corpus takes some time. Instead, lets restrict our study to the  first 1 billion bytes of English Wikipedia. They can be found on Matt Mahoney's [website](http://mattmahoney.net/):
+下载维基百科语料库需要一些时间。有一种替代方案就是我们只研究英语维基百科的前 10 亿字节（大概 1G 不到）。可以在 Matt Mahoney 的[网站](http://mattmahoney.net/)上找到：
 
 ```bash
 $ mkdir data
@@ -22,33 +20,33 @@ $ wget -c http://mattmahoney.net/dc/enwik9.zip -P data
 $ unzip data/enwik9.zip -d data
 ```
 
-A raw Wikipedia dump contains a lot of HTML / XML data. We pre-process it with the wikifil.pl script bundled with fastText (this script was originally developed by Matt Mahoney, and can be found on his [website](http://mattmahoney.net/) )
+原始维基百科转储包含大量的 HTML/XML 数据。我们使用与 fastText 一起打包的 `wikifil.pl` 脚本对其进行预处理（该脚本最初由 Matt Mahoney 开发，可以在他的[网站](http://mattmahoney.net/)上找到）
 
 ```bash
 $ perl wikifil.pl data/enwik9 > data/fil9
 ```
 
-We can check the file by running the following command:
+我们可以通过运行下面的命令来检查文件：
 
 ```bash
 $ head -c 80 data/fil9
 anarchism originated as a term of abuse first used against early working class
 ```
 
-The text is nicely pre-processed and can be used to learn our word vectors. 
+这个文本经过了很好地预处理，可以用来学习我们的词向量。
 
-## Training word vectors
+## 训练词向量
 
-Learning  word vectors on this data can now be achieved with a single command:
+基于这个数据来学习词向量只需要一个命令就能实现：
 
 ```bash
 $ mkdir result
 $ ./fasttext skipgram -input data/fil9 -output result/fil9
 ```
 
-To decompose this command line: ./fastext calls the binary fastText executable (see how to install fastText here) with the 'skipgram' model  (it can also be 'cbow'). We then specify the requires options '-input' for the location of the data and '-output' for the location where the word representations will be saved. 
+解释这行命令： `./fastext` 用 **skipgram** 模型（或者是 **cbow** 模型）调用 fastText 二进制的可执行文件（在这里参考如何安装 fastText ）。然后，'-input' 选项要求我们指定输入数据的位置，'-output' 指定输出要保存的位置。
 
-While fastText is running,  the progress and estimated time to completion is shown on your screen.  Once the program finishes, there should be two files in the result directory:
+当 fastText 运行时，屏幕上会显示进度和预计完成时间。一旦程序结束，`result` 目录中应该有两个文件：
 
 ```bash
 $ ls -l result
@@ -56,7 +54,7 @@ $ ls -l result
 -rw-r-r-- 1 bojanowski 1876110778 190004182 Dec 20 11:01 fil9.vec
 ```
 
-The `fil9.bin` file is a binary file that stores the whole fastText model and can be subsequently loaded. The `fil9.vec` file is a text file that contains the word vectors, one per line for each word in the vocabulary:
+`fil9.bin` 是一个二进制文件，用于存储整个 fastText 模型，并可以在之后重新加载。 `fil9.vec` 是一个包含词向量的文本文件，词汇表中的一个单词对应一行：
 
 ```bash
 $ head -n 4 result/fil9.vec
@@ -66,55 +64,54 @@ of -0.0083724 0.0059414 -0.046618 -0.072735 0.83007 0.038895 -0.13634 0.60063 ..
 one 0.32731 0.044409 -0.46484 0.14716 0.7431 0.24684 -0.11301 0.51721 0.73262 ...
 ```
 
-The first line is a header containing the number of words and the dimensionality of the vectors. The subsequent lines are the word vectors for all words in the vocabulary, sorted by decreasing frequency.
+第一行说明了单词数量和向量维数。随后的行是词汇表中所有单词的词向量，按降序排列。
 
-## Advanced readers: skipgram versus cbow
+## 高级读者：skipgram 与 cbow 两种模型
 
-fastText provides two models for computing word representations: skipgram and cbow ('**c**ontinuous-**b**ag-**o**f-**w**ords').
+fastText 提供了两种用于计算词表示的模型：skipgram 和 cbow ('**c**ontinuous-**b**ag-**o**f-**w**ords')。
 
-The skipgram model learns to predict a target word thanks to a nearby word. On the other hand, the cbow model predicts the target word according to its context. The  context is represented as a bag of the  words contained in a fixed size window around the target word. 
+skipgram 模型是学习近邻的单词来预测目标单词。 另一方面, cbow 模型是根据目标词的上下文来预测目标词。上下文是指在目标词左边和右边的固定单词数和。
 
-Let us illustrate this difference with an example:  given the sentence *'Poets have been mysteriously silent on the subject of cheese'* and the target word '*silent*', a skipgram model tries to predict the target using a random close-by word, like '*subject' *or* '*mysteriously*'**. *The cbow model takes all the words in a surrounding window, like {*been, *mysteriously*, on, the*}, and uses the sum of their vectors to predict the target. The figure below summarizes this difference with another example.
+让我们用一个例子来说明这种差异：给出句子 *'Poets have been mysteriously silent on the subject of cheese'* 和目标单词 '*silent*'，skipgram 模型随机取近邻词尝试预测目标词，如 '*subject*'或'*mysteriously*'。cbow 模型使用目标单词固定数量的左边和右边单词，，如 {*been*, *mysteriously*, *on*, *the*}，并使用它们的向量和来预测目标单词。下图用另一个例子总结了这种差异。
 
 ![cbow vs skipgram](https://fasttext.cc/img/cbo_vs_skipgram.png)
-To train a cbow model with fastText, you run the following command:
+要使用 fastText 训练 cbow 模型，请运行下面这个命令：
 
 ```bash
 ./fasttext cbow -input data/fil9 -output result/fil9
 ```
 
+通过这个练习，我们观察到 skipgram 模型会比 cbow 模型在 subword information 上效果更好
+在实践中，我们观察到 skipgram 模型比 cbow 在子词信息方面效果更好。
 
-In practice, we observe that skipgram models works better with subword information than cbow. 
+## 高级读者：调整参数
 
-## Advanced readers: playing with the parameters
+到目前为止，我们使用默认参数运行 fastText，但根据数据，这些参数可能不是最优的。 让我们介绍一下词向量的一些关键参数。
 
-So far, we run fastText with the default parameters, but depending on the data, these parameters may not be optimal. Let us give an introduction to some of the key parameters for word vectors.
-
-The most important parameters of the model are its dimension and the range of size for the subwords. The dimension (*dim*) controls the size of the vectors, the larger they are the more information they can capture but requires more data to be learned. But, if they are too large, they are harder and slower to train. By default, we use 100 dimensions, but any value in the 100-300 range is as popular. The subwords are all the substrings contained in a word between the minimum size (*minn*) and the maximal size (*maxn*). By default, we take all the subword between 3 and 6 characters, but other range could be more appropriate to different languages:
+模型的最重要的参数是维度和子词的大小范围。 维度（*dim*）控制向量的大小，维度越多，它们就需要学习更多的数据来获取越多的信息。 但是，如果它们太大，就会越来越难以训练。 默认情况下，我们使用 100个 维度，一般情况下使用 100 到 300 范围内中的值。 子词是包含在最小尺寸（*minn*）和最大尺寸（*maxn*）之间的字中的所有子字符串。 默认情况下，我们取 3 到 6 个字符的所有子词，但不同语言的适用范围可能不同：
 
 ```bash
 $ ./fasttext skipgram -input data/fil9 -output result/fil9 -minn 2 -maxn 5 -dim 300
 ```
 
-Depending on the quantity of data you have, you may want to change the parameters of the training.  The *epoch* parameter controls how many time will loop over your data. By default, we loop over the dataset 5 times.  If you dataset is extremely massive, you may want to loop over it less often. Another important parameter is the learning rate -*lr*). The higher the learning rate is, the faster the model converge to a solution but at the risk of overfitting to the dataset. The default value is 0.05 which is a good compromise. If you want to play with it we suggest to stay in the range of [0.01, 1]:
+根据您已有的数据量，您可能需要更改训练参数。 *epoch* 参数控制将循环多少次的数据。 默认情况下，我们遍历数据集 5 次。 如果你的数据集非常庞大，你可能希望更少地循环它。另一个重要参数是学习率 -*lr*）。 学习率越高，模型收敛到最优解的速度越快，但过拟合数据集的风险也越高。 默认值是 0.05，这是一个很好的折中值。 如果你想调整它，我们建议留在 [0.01，1] 的范围内：
 
 ```bash
 $ ./fasttext skipgram -input data/fil9 -output result/fil9 -epoch 1 -lr 0.5
 ```
 
-Finally , fastText is multi-threaded and uses 12 threads by default. If you have less CPU cores (say 4), you can easily set the number of threads using the *thread* flag:
+最后，fastText 是多线程的，默认使用 12 个线程。 如果 CPU 核心数较少（只有 4 个），则可以使用 *thread* 参数轻松设置线程数：
 
 ```bash
 $ ./fasttext skipgram -input data/fil9 -output result/fil9 -thread 4
 ```
 
 
+## 打印词向量
 
-## Printing word vectors
+直接从 `fil9.vec` 文件中搜索和打印词向量非常麻烦。 幸运的是，fastText 中有一个 `print-word-vectors` 功能。
 
-Searching and printing word vectors directly from  the `fil9.vec`  file  is cumbersome. Fortunately, there is a `print-word-vectors` functionality in fastText.  
-
-For examples, we can print the word vectors of words *asparagus,* *pidgey* and *yellow* with the following command:
+例如，我们可以使用以下命令打印词 *asparagus*，*pidgey* 和 *yellow* 的词向量：
 
 ```bash
 $ echo "asparagus pidgey yellow" | ./fasttext print-word-vectors result/fil9.bin
@@ -123,30 +120,28 @@ pidgey -0.16065 -0.45867 0.10565 0.036952 -0.11482 0.030053 0.12115 0.39725 ...
 yellow -0.39965 -0.41068 0.067086 -0.034611 0.15246 -0.12208 -0.040719 -0.30155 ...
 ```
 
-A nice feature is that you can also query for words that did not appear in your data! Indeed words are represented by the sum of its substrings. As long as the unknown word is made of known substrings, there is a representation of it! 
+一个很好的功能是，您还可以查询没有出现在数据中的单词！ 实际上，单词由其子串的总和来表示。 只要未知单词是由已知的子串组成的，就有它的表示形式！
 
-As an example let's try with a misspelled word:
+这里有一个例子，让我们尝试拼写错误的单词：
 
 ```bash
 $ echo "enviroment" | ./fasttext print-word-vectors result/fil9.bin
 ```
 
-You still get a word vector for it! But how good it is? Let s find out in the next sections!
+你仍然得到一个单词向量！ 但它有多棒？ 让我们在下一节中揭晓！
 
+## 最近邻查询
 
-## Nearest neighbor queries
+查看最近邻是检查词向量效果的一种简单方法。 这给出了向量能够获取的语义信息类型的直觉。
 
-A simple way to check the quality of a word vector is to look at its nearest neighbors. This give an intuition of the type of semantic information the vectors are able to capture.
-
-This can be achieve with the *nn   *functionality. For example, we can query the 10 nearest neighbors of a word by running the following command:
+这可以通过 *nn* 功能来实现。 例如，我们可以通过运行以下命令来查询单词的最近邻：
 
 ```bash
 $ ./fasttext nn result/fil9.bin
 Pre-computing word vectors... done.
 ```
 
-
-Then we are prompted to type our query word, let us try *asparagus* :
+然后我们会提示输入我们的查询词，让我们试试 *asparagus*：
 
 ```bash
 Query word? asparagus
@@ -162,7 +157,7 @@ celery 0.774529
 beets 0.773984
 ```
 
-Nice! It seems that vegetable vectors are similar. Note that the nearest neighbor is the word *asparagus* itself, this means that this word appeared in the dataset. What about pokemons?
+太好了！ 看来 vegetable 的向量是相似的。 请注意，最近邻是 *asparagus* 本身，这意味着这个词出现在数据集中。 那么 pokemons?
 
 ```bash
 Query word? pidgey
@@ -178,7 +173,7 @@ beedrill 0.741579
 charmeleon 0.733625
 ```
 
-Different evolution of the same Pokemon have close-by vectors! But what about our misspelled word, is its vector close to anything reasonable? Let s find out:
+相同 pokemons 的不同进化有紧邻的向量！ 但是我们拼错的单词呢，它的向量接近于任何合理的东西吗？ 让我们看看：
 
 ```bash
 Query word? enviroment
@@ -194,17 +189,17 @@ acclimatation 0.697196
 ecotourism 0.697081
 ```
 
-Thanks to the information contained within the word, the vector of our misspelled word matches to reasonable words! It is not perfect but the main information has been captured.
+由于这个词中包含的信息，我们拼写错误的单词的向量搭配到了匹配合理的单词！ 虽然这并不完美，但主要信息已经获取到了。
 
-## Advanced reader: measure of similarity
+## 高级读者：计算相似度
 
-In order to find nearest neighbors, we need to compute a similarity score between words. Our words are represented by continuous word vectors and we can thus apply simple similarities to them. In particular we use the cosine of the angles between two vectors. This similarity is computed for all words in the vocabulary, and the 10 most similar words are shown.  Of course, if the word appears in the vocabulary, it will appear on top, with a similarity of 1.
+为了找到最近邻，我们需要计算单词之间的相似度分数。 我们的单词用连续的词向量来表示，因此我们可以对它们应用简单的相似性。 尤其我们使用两个向量之间角度的余弦。 计算词汇表中所有单词的相似度，并显示 10 个最相似的单词。 当然，如果单词出现在词汇表中，它将出现在顶部，其相似度为 1。
 
-## Word analogies
+## 字的类比
 
-In a similar spirit, one can play around with word analogies. For example, we can see if our model can guess what is to France, what Berlin is to Germany. 
+用类比的思想，我们可以进行词的类比。 例如，我们可以看到我们的模型是否可以根据柏林是德国的首都来猜测法国的首都是什么，
 
-This can be done with the *analogies *functionality. It takes a word triplet (like *Germany Berlin France*) and outputs  the analogy:
+这可以通过 *analogies* 功能来完成。 它需要三个词（如*德国柏林法国*）来输出类别结果：
 
 ```bash
 $ ./fasttext analogies result/fil9.bin
@@ -222,7 +217,7 @@ bordeaux 0.740635
 pigneaux 0.736122
 ```
 
-The answer provides by our model is *Paris*, which is correct. Let's have a look at a less obvious example:
+我们的模型提供了正确的答案 *Paris*。 让我们来看一个不太明显的例子：
 
 ```bash
 Query triplet (A - B + C)? psx sony nintendo
@@ -238,12 +233,11 @@ dreamcast 0.74907
 famicom 0.745298
 ```
 
-Our model considers that the *nintendo* analogy of a *psx* is the *gamecube*, which seems  reasonable. Of course the quality of the analogies depend on the dataset used to train the model and one can only hope to cover fields only in the dataset.
+我们的模型认为 *psx* 的 *nintendo* 类比是 *gamecube*，这似乎是合理的。 当然，类比的质量取决于用于训练模型的数据集，并且只能出现存在数据集中的单词。
 
+## 字符 n-gram 的重要性
 
-## Importance of character n-grams
-
-Using subword-level information is particularly interesting to build vectors for unknown words. For example, the word *gearshift* does not exist on Wikipedia but we can still query its closest existing words:
+使用子字级信息对于为未知单词构建向量特别有趣。 例如，维基百科上不存在 *gearshift* 这个词，但我们仍然可以查询其最接近的现有词语：
 
 ```bash
 Query word? gearshift
@@ -259,17 +253,17 @@ epicycles 0.744268
 gearboxes 0.73986
 ```
 
-Most of the retrieved words share substantial substrings but a few are actually quite different, like *cogwheel*. You can try other words like *sunbathe* or *grandnieces*.
+大多数检索的单词共享大量的子字符串，但少数实际上完全不同，如 *cogwheel*。 你可以尝试其他单词，如 *sunbathe* 或 *grandnieces*。
 
-Now that we have seen the interest of subword information for unknown words, let s check how it compares to a model that do not use subword information. To train a model without no subwords, just run the following command:
+现在我们已经看到了未知词的子词信息的兴趣，我们来检查它与不使用子词信息的模型的比较。 要训练没有子词的模型，只需运行以下命令：
 
 ```bash
 $ ./fasttext skipgram -input data/fil9 -output result/fil9-none -maxn 0
 ```
 
-The results are saved in result/fil9-non.vec and result/fil9-non.bin.
+结果保存在`result/fil9-non.vec`和`result/fil9-non.bin`中。
 
-To illustrate the difference, let us take an uncommon word in Wikipedia, like *accomodation* which is a misspelling of *accommodation**.* Here is the nearest neighbors obtained without no subwords:
+为了说明这种差异，让我们在维基百科中使用一个不常见的单词，例如 *accomodation*，它是拼写错误的 *accommodation*。这里是没有子词的最近邻：
 
 ```bash
 $ ./fasttext nn result/fil9-none.bin
@@ -286,7 +280,7 @@ greenbelts 0.733975
 asserbo 0.732465
 ```
 
-The result does not make much sense, most of these words are unrelated. On the other hand, using subword information gives the following list of nearest neighbors:  
+结果没有多大意义，大部分这些词都是无关的。 另一方面，使用子字信息给出以下最近邻列表：
 
 ```bash
 Query word? accomodation
@@ -302,8 +296,8 @@ accomodate 0.703177
 hospitality 0.701426
 ```
 
-The nearest neighbors capture different variation around the word *accommodation*. We also get semantically related words such as *amenities* or *lodging*. 
+最近邻在词 *accommodation* 附近获取到了不同的变化。 我们还可以获得语义相关的词语，例如 *amenities* 或 *lodging*。
 
-## Conclusion
+## 结论
 
-In this tutorial, we show how to obtain word vectors from Wikipedia. This can be done for any language and you we provide [pre-trained models](https://fasttext.cc/docs/en/pretrained-vectors.html) with the default setting for 294 of them.
+在本教程中，我们展示了如何从维基百科获取词向量。 这可以通过任何语言完成，我们提供[预训练模型](https://fasttext.cc/docs/en/pretrained-vectors.html)，默认设置为 294。

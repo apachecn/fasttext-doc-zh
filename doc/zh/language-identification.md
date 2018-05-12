@@ -1,31 +1,28 @@
----
-id: language-identification
-title: Language identification
----
+# 语言识别
 
-### Description
+### 说明
 
-We distribute two models for language identification, which can recognize 176 languages (see the list of ISO codes below). These models were trained on data from [Wikipedia](https://www.wikipedia.org/), [Tatoeba](https://tatoeba.org/eng/) and  [SETimes](http://nlp.ffzg.hr/resources/corpora/setimes/), used under [CC-BY-SA](http://creativecommons.org/licenses/by-sa/3.0/).
+我们发布了两种语言识别模型，可以识别 176 种语言（请参阅下面的 ISO 代码列表）。 这些模型是通过 [Wikipedia](https://www.wikipedia.org/) ， [Tatoeba](https://tatoeba.org/eng/) 和 [SETimes](http://nlp.ffzg.hr/resources/corpora/setimes/) 的数据进行训练的，在 [CC-BY-SA](http://creativecommons.org/licenses/by-sa/3.0/) 下使用。
 
-We distribute two versions of the models:
+我们发布两个版本的模型：
 
-* [lid.176.bin](https://s3-us-west-1.amazonaws.com/fasttext-vectors/supervised_models/lid.176.bin), which is faster and slightly more accurate, but has a file size of 126MB ;
-* [lid.176.ftz](https://s3-us-west-1.amazonaws.com/fasttext-vectors/supervised_models/lid.176.ftz), which is the compressed version of the model, with a file size of 917kB.
+* [lid.176.bin](https://s3-us-west-1.amazonaws.com/fasttext-vectors/supervised_models/lid.176.bin) ，这个模型更快更准确，但有一个文件的大小有 126 MB;
+* [lid.176.ftz](https://s3-us-west-1.amazonaws.com/fasttext-vectors/supervised_models/lid.176.ftz) ，这是个只有 917 kB 的压缩版的模型。
 
-These models were trained on UTF-8 data, and therefore expect UTF-8 as input.
+这些模型都是使用 UTF-8 数据进行训练的，因此需要使用 UTF-8 作为输入。
 
-### License
+### 许可
 
-The models are distributed under the [*Creative Commons Attribution-Share-Alike License 3.0*](https://creativecommons.org/licenses/by-sa/3.0/).
+这些模型根据 [*Creative Commons Attribution-Share-Alike License 3.0*](https://creativecommons.org/licenses/by-sa/3.0/) 进行发布。
 
-### List of supported languages
+### 支持的语言列表
 ```
-af als am an ar arz as ast av az azb ba bar bcl be bg bh bn bo bpy br bs bxr ca cbk ce ceb ckb co cs cv cy da de diq dsb dty dv el eml en eo es et eu fa fi fr frr fy ga gd gl gn gom gu gv he hi hif hr hsb ht hu hy ia id ie ilo io is it ja jbo jv ka kk km kn ko krc ku kv kw ky la lb lez li lmo lo lrc lt lv mai mg mhr min mk ml mn mr mrj ms mt mwl my myv mzn nah nap nds ne new nl nn no oc or os pa pam pfl pl pms pnb ps pt qu rm ro ru rue sa sah sc scn sco sd sh si sk sl so sq sr su sv sw ta te tg th tk tl tr tt tyv ug uk ur uz vec vep vi vls vo wa war wuu xal xmf yi yo yue zh
+af als am ar ar as as ast av az azb ba bar bcl be bg bh bn bo bpy br bs bxr ca cbk ce ceb ckb co cs cv c cy cy de deqq dsb dty dv el eml en eo es et eu faf fr fr fyy ga gd gl gn gom gu gv he hi hif hr hsb ht hu hyia id ie ieo io is it ja jbo jv ka kk km kn ko krc ku kv kw ky la lb lez li lmo lo lrc lt lv mai mg mhr min mk ml mn mr mrj ms mt mwl my mym mzn nah nap nds ne new nl nn no oc or os pa pam pfl pl pms pnb ps pt qu rm ro ru rue sa sah scn sco sd sh si sl sl so sq sr su sv sw ta te tg th t t t tr t t tyv ug uk ur uz vec vep vi vls vo wa war wuu xal xmf yi yo yue zh
 ```
 
-### References
+### 参考
 
-If you use these models, please cite the following papers:
+如果您使用这些模型，请引用以下论文：
 
 [1] A. Joulin, E. Grave, P. Bojanowski, T. Mikolov, [*Bag of Tricks for Efficient Text Classification*](https://arxiv.org/abs/1607.01759)
 ```

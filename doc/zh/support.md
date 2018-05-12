@@ -1,29 +1,26 @@
----
-id: support
-title: Get started
----
+# 快速入门
 
-## What is fastText?
+## 什么是快速文本?
 
-fastText is a library for efficient learning of word representations and sentence classification.
+fastText 是一个用于高效学习单词表示和句子分类的库。
 
-## Requirements
+## 要求
 
-fastText builds on modern Mac OS and Linux distributions.
-Since it uses C++11 features, it requires a compiler with good C++11 support.
-These include :
+fastText 建立在现代 Mac OS 和 Linux 发行版上.
+由于它使用 C++11功能, 因此需要具有良好 C++11 支持的编译器.
+这些包括:
 
 * (gcc-4.6.3 or newer) or (clang-3.3 or newer)
 
-Compilation is carried out using a Makefile, so you will need to have a working **make**.
-For the word-similarity evaluation script you will need:
+使用 Makefile 进行编译, 因此您需要有一个可行的 **make**. 对于单词相似性评估脚本, 您需要:
 
 * python 2.6 or newer
 * numpy & scipy
 
-## Building fastText
+## 建立快速文本
 
-In order to build `fastText`, use the following:
+
+为了构建 `fastText`, 请使用以下内容:
 
 ```bash
 $ git clone https://github.com/facebookresearch/fastText.git
@@ -31,6 +28,6 @@ $ cd fastText
 $ make
 ```
 
-This will produce object files for all the classes as well as the main binary `fasttext`.
-If you do not plan on using the default system-wide compiler, update the two macros defined at the beginning of the Makefile (CC and INCLUDES).
+这将产生所有类以及主二进制文件的目标文件 `fasttext`。
+如果您不打算使用默认的系统范围编译器, 请更新 Makefile 开头定义的两个宏 (CC 和 INCLUDES)。
 

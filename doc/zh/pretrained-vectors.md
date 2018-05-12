@@ -1,16 +1,12 @@
----
-id: pretrained-vectors
-title: Wiki word vectors
----
+# 维基词向量
 
-We are publishing pre-trained word vectors for 294 languages, trained on [*Wikipedia*](https://www.wikipedia.org) using fastText.
-These vectors in dimension 300 were obtained using the skip-gram model described in [*Bojanowski et al. (2016)*](https://arxiv.org/abs/1607.04606) with default parameters.
+我们正在为 294 种语言发布预训练的单词向量, 并使用 fastText 在 [*维基百科*](https://www.wikipedia.org) 上进行了训练. 这些 300 维的向量是通过使用 [*Bojanowski 等人 (2016)*](https://arxiv.org/abs/1607.04606) 描述的 skip-gram 模型（使用: 默认参数）获得的.
 
-Please note that a newer version of multi-lingual word vectors are available at: [https://fasttext.cc/docs/en/crawl-vectors.html].
+请注意, 新版本的多语言词语向量可在: [https://fasttext.cc/docs/en/crawl-vectors.html].
 
-### Models
+### Models(模型)
 
-The models can be downloaded from:
+这些模型可以从下面下载:
 
 ||||
 |-|-|-|
@@ -113,19 +109,18 @@ The models can be downloaded from:
 | Yiddish: [*bin+text*](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki.yi.zip), [*text*](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki.yi.vec) | Yoruba: [*bin+text*](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki.yo.zip), [*text*](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki.yo.vec) | Zazaki: [*bin+text*](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki.diq.zip), [*text*](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki.diq.vec) |
 | Zeelandic: [*bin+text*](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki.zea.zip), [*text*](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki.zea.vec) | Zhuang: [*bin+text*](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki.za.zip), [*text*](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki.za.vec) | Zulu: [*bin+text*](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki.zu.zip), [*text*](https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki.zu.vec) |
 
-### Format
+### Format(格式化)
 
-The word vectors come in both the binary and text default formats of fastText.
-In the text format, each line contain a word followed by its vector. Each value is space separated.
-Words are ordered by their frequency in a descending order.
+单词向量以 fastText 的二进制和文本默认格式出现.
+在文本格式中，每行包含一个单词，后面跟着它的向量. 每个值都是空格分隔的. 单词按降序排序.
 
-### License
+### License(许可证)
 
-The word vectors are distributed under the [*Creative Commons Attribution-Share-Alike License 3.0*](https://creativecommons.org/licenses/by-sa/3.0/).
+该词向量分布在知识 [*共享署名 - 相同方式共享3.0许可下*](https://creativecommons.org/licenses/by-sa/3.0/).
 
-### References
+### References(参考)
 
-If you use these word vectors, please cite the following paper:
+如果您使用这些单词向量, 请引用以下文章:
 
 P. Bojanowski\*, E. Grave\*, A. Joulin, T. Mikolov, [*Enriching Word Vectors with Subword Information*](https://arxiv.org/abs/1607.04606)
 

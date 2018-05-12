@@ -1,57 +1,56 @@
----
-id: faqs
-title:FAQ
----
+# 常问问题
 
-## What is fastText? Are there tutorials?
+## 什么是 fastText? 有教程吗?
 
-FastText is a library for text classification and representation. It transforms text into continuous vectors that can later be used on any language related task. A few tutorials are available.
+FastText 是一个文本分类与表示的库. 它将文本转化为能用于任何语言相关任务的连续向量. 有一些教程可供使用.
 
-## Why are my fastText models that big?
+## 为什么我的 fastText 模型那么大?
 
-fastText uses a hashtable for either word or character ngrams. The size of the hashtable directly impacts the size of a model. To reduce the size of the model, it is possible to reduce the size of this table with the option '-hash'. For example a good value is 20000. Another option that greatly impacts the size of a model is the size of the vectors (-dim). This dimension can be reduced to save space but this can significantly impact performance. If that still produce a model that is too big, one can further reduce the size of a trained model with the quantization option.
+FastText 使用散列表来表示单词或字符 ngram(n元模型). 散列表的大小直接影响模型的大小. 要减小模型的大小, 可以使用 '-hash' 选项, 例如一个很好的值是20000. 另一个大大影响模型大小的选项是矢量的大小 (-dim) . 可以减少此维度以节省空间, 但这可能会显著影响性能. 如果仍然产生太大的模型，可以使用量化选项进一步减小训练模型的大小. 
 ```bash
 ./fasttext quantize -output model
 ``` 
 
-## What would be the best way to represent word phrases rather than words?
+## 表示单词短语而不是单词的最佳方法是什么?
 
-Currently the best approach to represent word phrases or sentence is to take a bag of words of word vectors. Additionally, for phrases like “New York”, preprocessing the data so that it becomes a single token “New_York” can greatly help. 
+目前, 表示单词短语或句子的最佳方法是将单词向量的单词做成词袋. 此外, 对于诸如“纽约”这样的短语, 预处理数据以使其成为单个标记 "New_York" 可以提供极大的帮助。
 
-## Why does fastText produce vectors even for unknown words?
+## 为什么 fastText 对未知词也产生向量?
 
-One of the key features of fastText word representation is its ability to produce vectors for any words, even made-up ones. 
-Indeed, fastText word vectors are built from vectors of substrings of characters contained in it. 
-This allows to build vectors even for misspelled words or concatenation of words.
+FastText 词表示的一个关键特征就是它能对任何词产生词向量, 即使是自制词. 
+事实上, fastText 词向量是由包含在其中的字符字串构成的. 
+这甚至允许为拼写错误的单词或拼接单词创建词向量. 
 
-## Why is the hierarchical softmax slightly worse in performance than the full softmax? 
+## 为什么分层 softmax 的效果比完全 softmax 效果要略差一些? 
 
-The hierachical softmax is an approximation of the full softmax loss that allows to train on large number of class efficiently. This is often at the cost of a few percent of accuracy. 
-Note also that this loss is thought for classes that are unbalanced, that is some classes are more frequent than others. If your dataset has a balanced number of examples per class, it is worth trying the negative sampling loss (-loss ns -neg 100).
-However, negative sampling will still be very slow at test time, since the full softmax will be computed.
+分层 softmax 是完全 softmax 损失函数的一种近似, 它能够在大量类的数据上高效训练. 这通常会损失一些精确度. 
+还要注意, 这个损失函数是针对某些类比其他类出现得更为频繁的类别不均衡情况的. 如果你的数据集中各类的样本均衡, 那么值得尝试一下负采样损失 (-loss ns -neg 100). 
+然而, 负采样在测试时仍然会非常慢, 因为会计算完全 softmax. 
 
-## Can we run fastText program on a GPU?
+## 我们可以在 GPU 上运行 fastText 程序吗?
 
-FastText only works on CPU for accessibility. That being said, fastText has been implemented in the caffe2 library which can be run on GPU.
+FastText 由于可访问性只工作于 CPU. 就是说, fastText 已经可以在能运行于 GPU 的 caffe2 库中实现.
 
-## Can I use fastText with python? Or other languages?
+## 我能用 python 语言使用 fastText 吗? 或者其他语言?
 
-There are few unofficial wrappers for python or lua available on github.
+Github 上几乎没有非官方的 python 或者 lua 包装器. 
 
-## Can I use fastText with continuous data?
+## 我能用 fastText 处理连续数据吗?
 
-FastText works on discrete tokens and thus cannot be directly used on continuous tokens. However, one can discretize continuous tokens to use fastText on them, for example by rounding values to a specific digit ("12.3" becomes "12").
+FastText适用于离散标记, 因此不能直接用于连续标记. 但是, 可以将连续标记离散化以对其使用fastText, 例如将值四舍五入为特定数字 ("12.3" 变为 "12"). 
 
-## There are misspellings in the dictionary. Should we improve text normalization?
+## 词典中一些错误拼写的词. 我们应该提升文本规范化吗?
 
-If the words are infrequent, there is no need to worry.
+如果这些词出现频率不高, 无须理会.
 
-## I'm encountering a NaN, why could this be?
+## 我遇到了 NaN, 为什么会这样呢?
 
-You'll likely see this behavior because your learning rate is too high. Try reducing it until you don't see this error anymore.
+你出现这个情况可能是因为学习率太高. 尝试减小学习率直到看不到这个错误. 
 
-## My compiler / architecture can't build fastText. What should I do?
-Try a newer version of your compiler. We try to maintain compatibility with older versions of gcc and many platforms, however sometimes maintaining backwards compatibility becomes very hard. In general, compilers and tool chains that ship with LTS versions of major linux distributions should be fair game. In any case, create an issue with your compiler version and architecture and we'll try to implement compatibility.
+## 我的编译器 / 体系结构无法构建 fastText. 我该怎么办?
+
+尝试新版本的编译器. 我们试图保持与老版本 gcc 和很多平台的兼容性, 然后有时候保持后端兼容变得非常难. 
+一般来说, 附带 LTS 版本的主要 linux 发行版的编译器和工具链应该都是没问题的. 遇到任何情况, 都可以创建一个你的编译器版本和体系结构的 issue(问题, 指在github上提出), 我们将尽力实现兼容性. 
 
 
 

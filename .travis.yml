@@ -10,7 +10,7 @@ script:
 after_script:
   - git config user.name ${GH_UN}
   - git config user.email ${GH_EMAIL}
-  - git push "https://${GH_TOKEN}@github.com/${GH_USER}/${GH_REPO}.git" master:${GH_BRANCH} -f
+  - git push "https://${GH_TOKEN}@github.com/${GH_USER}/${GH_REPO}.git" v0.1.0:${GH_BRANCH} -f
   
 env:
   global:

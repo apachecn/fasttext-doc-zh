@@ -4,6 +4,9 @@ python: 3.6
 install: 
   - ':'
 
+script: 
+  - ':'
+
 after_script:
   - git config user.name ${GH_UN}
   - git config user.email ${GH_EMAIL}

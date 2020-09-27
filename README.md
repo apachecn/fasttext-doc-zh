@@ -55,6 +55,14 @@ FastText 是一个用于高效学习单词表示和句子分类的库。
 
 ## 下载
 
+### PYPI
+
+```
+pip install fasttext-doc-zh
+fasttext-doc-zh <port>
+# 访问 http://localhost:{port} 查看文档
+```
+
 ### NPM
 
 ```

@@ -51,3 +51,14 @@ FastText 是一个用于高效学习单词表示和句子分类的库。
 - 在我们的 [apachecn/fasttext-doc-zh](https://github.com/apachecn/fasttext-doc-zh) github 上提 issue.
 - 发邮件送到 Email: fasttext#apachecn.org (#替换成@) .
 - 在我们的 [组织学习交流群](http://www.apachecn.org/organization/348.html) 中联系群主/管理员即可.
+
+
+## 下载
+
+### NPM
+
+```
+npm install -g fasttext-doc-zh
+fasttext-doc-zh <port>
+# 访问 http://localhost:{port} 查看文档
+```

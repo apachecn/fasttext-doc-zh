@@ -55,6 +55,14 @@ FastText 是一个用于高效学习单词表示和句子分类的库。
 
 ## 下载
 
+### Docker
+
+```
+docker pull apachecn0/fasttext-doc-zh
+docker run -tid -p <port>:80 apachecn0/fasttext-doc-zh
+# 访问 http://localhost:{port} 查看文档
+```
+
 ### PYPI
 
 ```
